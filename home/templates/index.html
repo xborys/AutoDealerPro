@@ -1,8 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-     <title>PHPJabber | Car Dealer Website Template</title>
+     <title>AutoDealerPro</title>
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -11,13 +12,15 @@
      <meta name="author" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-     <link rel="stylesheet" href="css/bootstrap.min.css">
-     <link rel="stylesheet" href="css/font-awesome.min.css">
-     <link rel="stylesheet" href="css/owl.carousel.css">
-     <link rel="stylesheet" href="css/owl.theme.default.min.css">
+     
+
+     <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'home/css/font-awesome.min.css' %}">
+     <link rel="stylesheet" href="{% static 'home/css/owl.carousel.css' %}">
+     <link rel="stylesheet" href="{% static 'home/css/owl.theme.default.min.css' %}">
 
      <!-- MAIN CSS -->
-     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
 
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -42,7 +45,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="#" class="navbar-brand">Car Dealer Website</a>
+                    <a href="#" class="navbar-brand">Company NAME</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -60,7 +63,7 @@
 			                         <li><a href="testimonials.html">Testimonials</a></li>
                               </ul>
                          </li>
-                         <li><a href="contact.html">Contact Us</a></li>
+                         <li><a href="admin">ADMIN PANEL</a></li>
                     </ul>
                </div>
 
@@ -140,7 +143,7 @@
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="images/product-1-720x480.jpg" class="img-responsive" alt="">
+                                             <img src="{% static 'home/images/product-1-720x480.jpg' %}" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
                                              <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
@@ -167,7 +170,7 @@
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="images/product-2-720x480.jpg" class="img-responsive" alt="">
+                                             <img src="{% static 'home/images/product-2-720x480.jpg' %}" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
                                              <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
@@ -194,7 +197,7 @@
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="images/product-3-720x480.jpg" class="img-responsive" alt="">
+                                             <img src="{% static 'home/images/product-3-720x480.jpg' %}" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
                                              <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
@@ -221,7 +224,7 @@
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="images/product-4-720x480.jpg" class="img-responsive" alt="">
+                                             <img src="{% static 'home/images/product-4-720x480.jpg' %}" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
                                              <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
@@ -248,7 +251,7 @@
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="images/product-5-720x480.jpg" class="img-responsive" alt="">
+                                             <img src="{% static 'home/images/product-5-720x480.jpg' %}" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
                                              <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
@@ -275,7 +278,7 @@
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="images/product-6-720x480.jpg" class="img-responsive" alt="">
+                                             <img src="{% static 'home/images/product-6-720x480.jpg' %}" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
                                              <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
@@ -314,7 +317,7 @@
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="images/blog-1-720x480.jpg" class="img-responsive" alt="">
+                                             <img src="{% static 'home/images/blog-1-720x480.jpg' %}" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
                                              <span title="Author"><i class="fa fa-user"></i> John Doe</span>
@@ -337,7 +340,7 @@
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="images/blog-2-720x480.jpg" class="img-responsive" alt="">
+                                             <img src="{% static 'home/images/blog-2-720x480.jpg' %}" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
                                              <span title="Author"><i class="fa fa-user"></i> John Doe</span>
@@ -360,7 +363,7 @@
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="images/blog-3-720x480.jpg" class="img-responsive" alt="">
+                                             <img src="{% static 'home/images/blog-3-720x480.jpg' %}" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
                                              <span title="Author"><i class="fa fa-user"></i> John Doe</span>
@@ -397,7 +400,7 @@
                                    <div class="col-md-4 col-sm-4">
                                         <div class="item">
                                              <div class="tst-image">
-                                                  <img src="images/tst-image-1-200x216.jpg" class="img-responsive" alt="">
+                                                  <img src="{% static 'home/images/tst-image-1-200x216.jpg' %}" class="img-responsive" alt="">
                                              </div>
                                              <div class="tst-author">
                                                   <h4>Jackson</h4>
@@ -417,7 +420,7 @@
                                    <div class="col-md-4 col-sm-4">
                                         <div class="item">
                                              <div class="tst-image">
-                                                  <img src="images/tst-image-2-200x216.jpg" class="img-responsive" alt="">
+                                                  <img src="{% static 'home/images/tst-image-2-200x216.jpg' %}" class="img-responsive" alt="">
                                              </div>
                                              <div class="tst-author">
                                                   <h4>Camila</h4>
@@ -435,7 +438,7 @@
                                    <div class="col-md-4 col-sm-4">
                                         <div class="item">
                                              <div class="tst-image">
-                                                  <img src="images/tst-image-3-200x216.jpg" class="img-responsive" alt="">
+                                                  <img src="{% static 'home/images/tst-image-3-200x216.jpg' %}" class="img-responsive" alt="">
                                              </div>
                                              <div class="tst-author">
                                                   <h4>Barbie</h4>
@@ -454,7 +457,7 @@
                                    <div class="col-md-4 col-sm-4">
                                         <div class="item">
                                              <div class="tst-image">
-                                                  <img src="images/tst-image-4-200x216.jpg" class="img-responsive" alt="">
+                                                  <img src="{% static 'home/images/tst-image-4-200x216.jpg' %}" class="img-responsive" alt="">
                                              </div>
                                              <div class="tst-author">
                                                   <h4>Andrio</h4>
@@ -505,7 +508,7 @@
 
                     <div class="col-md-6 col-sm-12">
                          <div class="contact-image">
-                              <img src="images/contact-1-600x400.jpg" class="img-responsive" alt="Smiling Two Girls">
+                              <img src="{% static 'home/images/contact-1-600x400.jpg' %}" class="img-responsive" alt="Smiling Two Girls">
                          </div>
                     </div>
 
@@ -584,11 +587,11 @@
      </footer>
 
      <!-- SCRIPTS -->
-     <script src="js/jquery.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-     <script src="js/owl.carousel.min.js"></script>
-     <script src="js/smoothscroll.js"></script>
-     <script src="js/custom.js"></script>
+     <script src="{% static 'home/js/jquery.js' %}"></script>
+     <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'home/js/owl.carousel.min.js' %}"></script>
+     <script src="{% static 'home/js/smoothscroll.js' %}"></script>
+     <script src="{% static 'home/js/custom.js' %}"></script>
 
 </body>
 </html>
