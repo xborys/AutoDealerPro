@@ -5,3 +5,6 @@ def home(request):
 
 def FAQ(request):
     return render(request, 'FAQ.html', {})
+
+def index(request):
+    return render(request, 'index.html', {})
