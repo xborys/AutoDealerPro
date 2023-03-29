@@ -9,5 +9,5 @@ def FAQ(request):
 def index(request):
     return render(request, 'index.html', {})
 
-def index(request):
+def LP(request):
     return render(request, 'partnerzy.html', {})
