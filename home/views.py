@@ -8,3 +8,9 @@ def FAQ(request):
 
 def index(request):
     return render(request, 'index.html', {})
+
+def CarList(request):
+    return render(request, 'CarList.html', {})
+
+def Partners(request):
+    return render(request, 'Partners.html', {})
