@@ -1,0 +1,79 @@
+{% load static %}
+{% include 'head.html' %}
+
+     <section>
+          <div class="container">
+               <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                         <div class="text-center">
+                              <h1>Lista parterów</h1>
+                         </div>
+     <h2>Auto Moto Centrum</h2>
+	<h3>autoryzowany dealer samochodów marki Tesla</h3>
+	
+	<h2>Serwis Samochodowy Moto Car</h2>
+	<h3>specjalizujący się w naprawie samochodów marki BMW</h3>
+	
+	<h2>Sklep z Częściami Samochodowymi "Parts Car"</h2>
+	<h3>oferujący części samochodowe dla wielu marek, w tym dla samochodów z lat 80/90</h3>
+	
+	<h2>Warsztat Blacharsko-Lakierniczy "Auto Fix"</h2>
+	<h3>oferujący kompleksową naprawę blacharsko-lakierniczą elektrycznych samochodów</h3>
+	
+	<h2>Wypożyczalnia Samochodów "Auto Rent"</h2>
+	
+	<h2>Producent Opon "Drive" </h2>
+	<h3>oferujący wysokiej jakości opony</h3>
+	
+	<h2>Sklep z Samochodami Używanymi "Auto Trade"</h2>
+	<h3>oferujący sprzedaż samochodów używanych różnych marek</h3>
+
+     <h2>Sklep z Akcesoriami Samochodowymi "Auto Style"</h2>
+	<h3>oferujący szeroki wybór akcesoriów i gadżetów</h3>
+
+     <h2>Producent Chemii Samochodowej "AutoChem"</h2>
+	<h3>oferujący produkty chemiczne do pielęgnacji i konserwacji samochodów</h3>
+
+                              <p class="lead"></p>
+                         
+                    </div>
+               </div>
+          </div>
+     </section>
+          <!-- CONTACT -->
+          <section id="contact">
+               <div class="container">
+                    <div class="row">
+     
+                         <div class="col-md-6 col-sm-12">
+                              <form id="contact-form" role="form" action="" method="post">
+                                   <div class="section-title">
+                                        <h2>Contact us <small>we love conversations. let us talk!</small></h2>
+                                   </div>
+     
+                                   <div class="col-md-12 col-sm-12">
+                                        <input type="text" class="form-control" placeholder="Enter full name" name="name" required>
+                         
+                                        <input type="email" class="form-control" placeholder="Enter email address" name="email" required>
+     
+                                        <textarea class="form-control" rows="6" placeholder="Tell us about your message" name="message" required></textarea>
+                                   </div>
+     
+                                   <div class="col-md-4 col-sm-12">
+                                        <input type="submit" class="form-control" name="send message" value="Send Message">
+                                   </div>
+     
+                              </form>
+                         </div>
+     
+                         <div class="col-md-6 col-sm-12">
+                              <div class="contact-image">
+                                   <img src="{% static 'home/images/contact-1-600x400.jpg' %}" class="img-responsive" alt="Smiling Two Girls">
+                              </div>
+                         </div>
+     
+                    </div>
+               </div>
+          </section>       
+     
+{% include 'footer.html' %}
