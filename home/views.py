@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Orders
+from .models import Orders, Car
 
 def home(request):
     return render(request, 'index.html', {})
@@ -11,13 +11,14 @@ def index(request):
     return render(request, 'index.html', {})
 
 def CarList(request):
-    return render(request, 'CarList.html', {})
+    car_list = Car.objects.all()
+    return render(request, 'CarList.html', 
+                  {'car_list': car_list})
 
 def LP(request):
     return render(request, 'partnerzy.html', {})
 
 def Transakcje(request):
     order_list = Orders.objects.all()
-
     return render(request, 'transakcje.html', 
                   {'order_list': order_list})

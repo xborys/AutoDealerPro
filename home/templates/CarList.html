@@ -1,5 +1,54 @@
 {% load static %}
 {% include 'head.html' %}
-                
-     
+   
+{% block content %}
+<div class="container">
+{% for car in car_list %}
+
+    <div class="col-md-4 col-sm-4">
+        <div class="courses-thumb courses-thumb-secondary">
+            <div class="courses-top">
+                <div class="courses-image">
+                    <img src="{% static 'home/images/product-2-720x480.jpg' %}" class="img-responsive" alt="">
+                </div>
+                <div class="courses-date">
+                    <span title="Author"><i class="fa fa-dashboard"></i>
+                        {{car.mileage}} km
+                    </span>
+                    <span title="Author"><i class="fa fa-cube"></i>
+                        1800cc
+                    </span>
+                    <span title="Views"><i class="fa fa-cog"></i>
+                        Manual
+                    </span>
+                </div>
+            </div>
+
+            <div class="courses-detail">
+                <h3><a href="car-details.html">
+                    {{car.make}} {{car.model}}
+                </a></h3>
+
+                <p class="lead"><strong>
+                    {{car.price}} PLN
+                </strong></p>
+
+                <p>
+                    190 hp &nbsp;&nbsp;/&nbsp;&nbsp;
+                    Petrol &nbsp;&nbsp;/&nbsp;&nbsp;
+                    {{car.year}} &nbsp;&nbsp;/&nbsp;&nbsp;
+                    New vehicle
+                </p>
+            </div>
+
+            <div class="courses-info">
+                <a href="car-details.html" class="section-btn btn btn-primary btn-block">Więcej informacji</a>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+{% endblock %}
+
 {% include 'footer.html' %}
