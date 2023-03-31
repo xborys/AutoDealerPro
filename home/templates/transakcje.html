@@ -1,7 +1,7 @@
 {% load static %}
 {% include 'head.html' %}
-<title>Lista transakcji samochodowych</title>
-<body>
+{% block content %}
+
     <button class="add-transaction-button">Dodaj transakcję</button>
 	<table>
 		<thead>
@@ -14,66 +14,27 @@
 				<th>VIN</th>
 				<th>Cena</th>
                 <th>Handlowiec</th>
+				<th></th>
                 
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-                
-				<td>1</td>
-                <td>Jan Kowalski</td>
-				<td>BMW</td>
-				<td>X5</td>
-				<td>2015</td>
-				<td>120 000 zł</td>
-                <td>AutoMania 360</td>
-                
-			</tr>
-			<tr>
-                
-				<td>2</td>
-                <td>Regina Walczuk</td>
-				<td>Mercedes</td>
-				<td>C-Class</td>
-				<td>2018</td>
-				<td>150 000 zł</td>
-                <td>CarsonDealson</td>
-                
-			</tr>
-			<tr>
-                
-				<td>3</td>
-                <td>Joanna Wałęsa</td>
-				<td>Audi</td>
-				<td>A4</td>
-				<td>2017</td>
-				<td>100 000 zł</td>
-                <td>Car World</td>
-                
-			</tr>
-			<tr>
-                
-				<td>4</td>
-                <td>Jan Paweł II</td>
-				<td>Toyota</td>
-				<td>Rav4</td>
-				<td>2019</td>
-				<td>80 000 zł</td>
-                <td>Voyage</td>
-                
-			</tr>
-			<tr>
-                
-				<td>5</td>
-                <td>Rąsia Rączkiewicz</td>
-				<td>Ford</td>
-				<td>Mustang</td>
-				<td>2016</td>
-				<td>200 000 zł</td>
-                <td>Man's World</td>
-                
-			</tr>
+			{% for order in order_list %}
+				<tr>       
+					<td>{{order.order_number}}</td>
+					<td>{{order.client}}</td>
+					<td>{{order.car.make}}</td>
+					<td>{{order.car.model}}</td>
+					<td>{{order.car.vin}}</td>
+					<td>{{order.order_price}} PLN</td>
+					<td>{{order.employee}}</td>
+					<td>
+						<button><i class="fa-regular fa-eye"></i></button>
+					</td>
+				</tr>
+			{% endfor %}
 		</tbody>
 	</table>
-</body>
+
+{% endblock %}
 {% include 'footer.html' %}

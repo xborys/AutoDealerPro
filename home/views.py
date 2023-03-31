@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Orders
 
 def home(request):
     return render(request, 'index.html', {})
@@ -16,4 +17,7 @@ def LP(request):
     return render(request, 'partnerzy.html', {})
 
 def Transakcje(request):
-    return render(request, 'transakcje.html', {})
+    order_list = Orders.objects.all()
+
+    return render(request, 'transakcje.html', 
+                  {'order_list': order_list})

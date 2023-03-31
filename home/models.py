@@ -3,6 +3,7 @@ from django.db import models
 class Car(models.Model):
     make = models.CharField('Marka', max_length=50)
     model = models.CharField('Model', max_length=50)
+    vin = models.CharField('VIN', max_length=17)
     year = models.IntegerField('Rok produkcji')
     price = models.IntegerField('Cena (PLN)')
     mileage = models.IntegerField('Przebieg (km)')
@@ -39,4 +40,22 @@ class Employee(models.Model):
     
     def __str__(self):
         return self.name
+    
+class Order_status(models.Model):
+    status = models.CharField('Status', max_length=50)
+    
+    def __str__(self):
+        return self.status
+
+class Orders(models.Model):
+    order_number = models.CharField('Numer transakcji', max_length=50)
+    client = models.ForeignKey(Clients, on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    order_date = models.DateField('Data transakcji')
+    order_price = models.IntegerField('Kwota transakcji')
+    order_status = models.ForeignKey(Order_status, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return '#' + self.order_number + ' | ' + self.client.name + ' | ' + self.car.make + ' ' + self.car.model
  
