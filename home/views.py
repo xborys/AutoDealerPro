@@ -15,3 +15,5 @@ def CarList(request):
 def LP(request):
     return render(request, 'partnerzy.html', {})
 
+def Transakcje(request):
+    return render(request, 'transakcje.html', {})
