@@ -22,3 +22,10 @@ def Transakcje(request):
     order_list = Orders.objects.all()
     return render(request, 'transakcje.html', 
                   {'order_list': order_list})
+    
+def Clients(request):
+    return render(request, 'Clients.html', {})
+
+def ClientsList(request):
+    clients_list = Car.objects.all()
+    return render(request, 'ClientsList.html', {'clients_list': clients_list})

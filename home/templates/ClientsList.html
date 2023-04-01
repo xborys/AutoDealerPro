@@ -1,0 +1,21 @@
+{% load static %}
+{% include 'head.html' %}
+   
+{% block content %}
+<div class="container">
+
+{% for clients in clients_list %}
+    <br>
+    <div class="col-md-12 col-sm-12">
+        <div class="courses-thumb courses-thumb-secondary">
+            <div class="text-center">
+                    {{client.name}}
+                
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% include 'footer.html' %}
