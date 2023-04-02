@@ -3,19 +3,40 @@
    
 {% block content %}
 <div class="container">
-
-{% for clients in clients_list %}
-    <br>
     <div class="col-md-12 col-sm-12">
         <div class="courses-thumb courses-thumb-secondary">
             <div class="text-center">
-                    {{clients.name}}
-                    
+<table>
+    
+    <tr><th>LP.</th>
+        <th>Imie i nazwisko/nazwa firmy</th>
+    <th>PESEL</th>
+    <th>NIP</th>
+    <th>Adres</th>
+    <th>Miasto</th>
+    <th>Kod pocztowy</th>
+    <th>Telefon</th>
+    <th>Email</th></tr>
+{% for clients in clients_list %}
+    <br>
+    
+            <tr><td>{{forloop.counter}}</td>
+                    <td>{{clients.name}}</td>
+                        <td>{{clients.pesel}}</td>
+                            <td>{{clients.nip}}</td>
+                                <td>{{clients.adress}}</td>
+                                    <td>{{clients.city}} </td>
+                                        <td>{{clients.zip}}</td>
+                                            <td> {{clients.phone}}</td>
+                                                <td>{{clients.email}}</td>
+            </tr>
                 
-            </div>
-        </div>
-    </div>
 {% endfor %}
+</table>
+<br>
+</div>
+</div>
+</div>
 </div>
 {% endblock %}
 
