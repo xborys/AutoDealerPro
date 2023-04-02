@@ -18,9 +18,9 @@ def CarList(request):
 def LP(request):
     return render(request, 'partnerzy.html', {})
 
-def Transakcje(request):
+def Sale_Transaction(request):
     order_list = Orders.objects.all()
-    return render(request, 'transakcje.html', 
+    return render(request, 'Sale_Transaction.html', 
                   {'order_list': order_list})
     
 def Add_Clients(request):
