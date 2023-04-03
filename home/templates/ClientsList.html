@@ -3,7 +3,7 @@
    
 {% block content %}
 
-    <button class="add-transaction-button" onclick="location.href='add_client'" >Dodaj klienta</button>
+    <br/>
 	<table>
 		<thead>
 			<tr>
@@ -16,7 +16,7 @@
                 <th>Kod pocztowy</th>
                 <th>Telefon</th>
                 <th>e-mail</th>
-				<th></th>
+				<th><button class="btn btn-dark" onclick="location.href='add_client'" >Dodaj klienta</button></th>
                 
 			</tr>
 		</thead>
@@ -24,11 +24,23 @@
 			{% for clients in clients_list %}
 				<tr>       
 					<td>{{clients.name}}</td>
-					<td>{{clients.pesel}}</td>
-					<td>{{clients.nip}}</td>
+					<td>
+						{% if clients.pesel == None %}
+							-
+						{% else %}
+							{{clients.pesel}}
+						{% endif %}
+					</td>
+					<td>
+						{% if clients.nip == None %}
+							-
+						{% else %}
+							{{clients.nip}}
+						{% endif %}
+					</td>
 					<td>{{clients.adress}}</td>
 					<td>{{clients.city}}</td>
-					<td>{{clients.zip}} PLN</td>
+					<td>{{clients.zip}}</td>
 					<td>{{clients.phone}}</td>
                     <td>{{clients.email}}</td>
 					<td>
@@ -39,6 +51,7 @@
 			{% endfor %}
 		</tbody>
 	</table>
+	<br/>
 
 {% endblock %}
 
