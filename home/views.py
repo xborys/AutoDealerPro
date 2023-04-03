@@ -24,7 +24,7 @@ def Sale_Transaction(request):
                   {'order_list': order_list})
     
 def Add_Clients(request):
-    return render(request, 'Clients.html', {})
+    return render(request, 'Add_Clients.html', {})
 
 def ClientsList(request):
     clients_list = Clients.objects.all()
