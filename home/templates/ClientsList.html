@@ -2,24 +2,21 @@
 {% include 'head.html' %}
    
 {% block content %}
-<form method="get">
-	<label for="filter">Filtruj:</label>
-	<input type="text" id="filter" name="filter" value="{{ filter_value }}">
-	<button type="submit">Filtruj</button>
-</form>
+
     <button class="add-transaction-button" onclick="location.href='add_client'" >Dodaj klienta</button>
 	<table>
 		<thead>
 			<tr>
-                <th><a href="?sort=name{% if sort == 'name' %}&direction={{ direction|opposite }}{% endif %}">Imię i nazwisko klienta / Nazwa firmy</a></th>
-                <th><a href="?sort=pesel{% if sort == 'pesel' %}&direction={{ direction|opposite }}{% endif %}">PESEL</a></th>
-                <th><a href="?sort=nip{% if sort == 'nip' %}&direction={{ direction|opposite }}{% endif %}">NIP</a></th>
-                <th><a href="?sort=adress{% if sort == 'adress' %}&direction={{ direction|opposite }}{% endif %}">Adres</a></th>
-                <th><a href="?sort=city{% if sort == 'city' %}&direction={{ direction|opposite }}{% endif %}">Miasto</a></th>
-                <th><a href="?sort=zip{% if sort == 'zip' %}&direction={{ direction|opposite }}{% endif %}">Kod pocztowy</a></th>
-                <th><a href="?sort=phone{% if sort == 'phone' %}&direction={{ direction|opposite }}{% endif %}">Telefon</a></th>
-                <th><a href="?sort=email{% if sort == 'email' %}&direction={{ direction|opposite }}{% endif %}">e-mail</a></th>
-                <th></th>
+                <th>Imię i nazwisko klienta<br> / Nazwa firmy</th>
+				<th>PESEL</th>
+				<th>NIP</th>
+				<th>Adres</th>
+				<th>Miasto</th>
+                <th>Kod pocztowy</th>
+                <th>Telefon</th>
+                <th>e-mail</th>
+				<th></th>
+                
 			</tr>
 		</thead>
 		<tbody>
@@ -38,11 +35,7 @@
 						<button><i class="fa fa-cog"></i></button>
 					</td>
 				</tr>
-				{% empty %}
-				<tr>
-                    <td colspan="9">Brak klientów spełniających podane kryteria.</td>
-                </tr>
-				{% endfor %}
+			{% endfor %}
 		</tbody>
 	</table>
 

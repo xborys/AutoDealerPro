@@ -46,22 +46,3 @@ def ClientsList(request):
     return render(request, 'ClientsList.html', 
                   {'clients_list': clients_list})
 
-def ClientsList(request):
-
-    filter_value = request.GET.get('filter', '')
-
-    sort = request.GET.get('sort', 'name')
-    direction = request.GET.get('direction', 'asc')
-
-    Clients = Clients(name__icontains=filter_value) | Clients(nip__icontains=filter_value)
-
-    order_by = f'{sort}' if direction == 'asc' else f'-{sort}'
-    clients_list = Clients.objects.filter(Clients).order_by(order_by)
-
-    context = {
-        'clients_list': clients_list,
-        'filter_value': filter_value,
-        'sort': sort,
-        'direction': direction,
-    }
-    return render(request, 'ClientsList.html', context)
