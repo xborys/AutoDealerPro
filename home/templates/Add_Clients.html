@@ -1,0 +1,31 @@
+{% load static %}
+{% include 'head.html' %}
+   
+{% block content %}
+<div class='container'>
+    z
+
+        <h1>Dodawanie klienta</h1>
+        <br/>
+
+        {% if submitted %}
+
+                Dodano klienta!
+
+        {% else %}
+            
+            <form action="" method=POST>
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <input type='submit' value='Dodaj' class='btn btn-secondary'>
+            </form>
+            <br/>
+
+        {% endif %}
+    
+</div>
+{% endblock %}
+
+{% include 'footer.html' %}

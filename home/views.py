@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import Orders, Car, Clients
+from .forms import ClientsForm
+from django.http import HttpResponseRedirect
 
 def home(request):
     return render(request, 'index.html', {})
@@ -18,13 +20,26 @@ def CarList(request):
 def LP(request):
     return render(request, 'partnerzy.html', {})
 
-def Transakcje(request):
+def Sale_Transaction(request):
     order_list = Orders.objects.all()
-    return render(request, 'transakcje.html', 
+    return render(request, 'Sale_Transaction.html', 
                   {'order_list': order_list})
     
 def Add_Clients(request):
-    return render(request, 'Clients.html', {})
+    submitted = False
+    
+    if request.method == 'POST':
+        form = ClientsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_client?submitted=True')
+    else:
+        form = ClientsForm
+        if "submitted" in request.GET:
+            submitted = True
+
+    return render(request, 'Add_Clients.html',
+                  {'form':form, 'submitted':submitted})
 
 def ClientsList(request):
     clients_list = Clients.objects.all()
