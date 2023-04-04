@@ -11,32 +11,15 @@
 	<table>
 		<thead>
 			<tr>
-                <th>
-					<a href="?sort=name">Imię i nazwisko klienta<br> / Nazwa firmy</a>
-				</th>
-				<th>
-					<a href="?sort=pesel">PESEL</a>
-				</th>
-				<th>
-					<a href="?sort=nip">NIP</a>
-				</th>
-				<th>
-					<a href="?sort=adress">Adres</a>
-				</th>
-				<th>
-					<a href="?sort=city">Miasto</a>
-				</th>
-                <th>
-					<a href="?sort=zip">Kod pocztowy</a>
-				</th>
-                <th>
-					<a href="?sort=phone">Telefon</a>
-				</th>
-                <th>
-					<a href="?sort=email">e-mail</a>
-				</th>
-				<th></th>
-                
+                <th><a href="?sort=name{% if sort == 'name' %}&direction={{ direction|opposite }}{% endif %}">Imię i nazwisko klienta / Nazwa firmy</a></th>
+                <th><a href="?sort=pesel{% if sort == 'pesel' %}&direction={{ direction|opposite }}{% endif %}">PESEL</a></th>
+                <th><a href="?sort=nip{% if sort == 'nip' %}&direction={{ direction|opposite }}{% endif %}">NIP</a></th>
+                <th><a href="?sort=adress{% if sort == 'adress' %}&direction={{ direction|opposite }}{% endif %}">Adres</a></th>
+                <th><a href="?sort=city{% if sort == 'city' %}&direction={{ direction|opposite }}{% endif %}">Miasto</a></th>
+                <th><a href="?sort=zip{% if sort == 'zip' %}&direction={{ direction|opposite }}{% endif %}">Kod pocztowy</a></th>
+                <th><a href="?sort=phone{% if sort == 'phone' %}&direction={{ direction|opposite }}{% endif %}">Telefon</a></th>
+                <th><a href="?sort=email{% if sort == 'email' %}&direction={{ direction|opposite }}{% endif %}">e-mail</a></th>
+                <th></th>
 			</tr>
 		</thead>
 		<tbody>

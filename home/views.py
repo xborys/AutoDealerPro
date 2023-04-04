@@ -47,34 +47,21 @@ def ClientsList(request):
                   {'clients_list': clients_list})
 
 def ClientsList(request):
-    
-    search_name = request.GET.get('search_name')
+
+    filter_value = request.GET.get('filter', '')
+
     sort = request.GET.get('sort', 'name')
+    direction = request.GET.get('direction', 'asc')
 
-    clients_list = Clients.objects.all()
+    Clients = Clients(name__icontains=filter_value) | Clients(nip__icontains=filter_value)
 
-    if search_name:
-        clients_list = clients_list.filter(Q(name__icontains=search_name) | Q(company_name__icontains=search_name))
+    order_by = f'{sort}' if direction == 'asc' else f'-{sort}'
+    clients_list = Clients.objects.filter(Clients).order_by(order_by)
 
-    # sortowanie danych
-    if sort == 'name':
-        clients_list = clients_list.order_by('name')
-    elif sort == 'pesel':
-        clients_list = clients_list.order_by('pesel')
-    elif sort == 'nip':
-        clients_list = clients_list.order_by('nip')
-    elif sort == 'adress':
-        clients_list = clients_list.order_by('adres')
-    elif sort == 'city':
-        clients_list = clients_list.order_by('city')
-    elif sort == 'zip':
-        clients_list = clients_list.order_by('zip')
-    elif sort == 'phone':
-        clients_list = clients_list.order_by('phone')
-    elif sort == 'email':
-        clients_list = clients_list.order_by('email')
-
-context = {
-    'clients_list': clients_list
-}
-return render(request, 'client_list.html', context)
+    context = {
+        'clients_list': clients_list,
+        'filter_value': filter_value,
+        'sort': sort,
+        'direction': direction,
+    }
+    return render(request, 'ClientsList.html', context)
