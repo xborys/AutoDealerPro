@@ -2,20 +2,39 @@
 {% include 'head.html' %}
    
 {% block content %}
-
+<form method="get">
+	<label for="filter">Filtruj:</label>
+	<input type="text" id="filter" name="filter" value="{{ filter_value }}">
+	<button type="submit">Filtruj</button>
+</form>
     <button class="add-transaction-button" onclick="location.href='add_client'" >Dodaj klienta</button>
 	<table>
 		<thead>
 			<tr>
-                
-                <th>Imię i nazwisko klienta<br> / Nazwa firmy</th>
-				<th>PESEL</th>
-				<th>NIP</th>
-				<th>Adres</th>
-				<th>Miasto</th>
-                <th>Kod pocztowy</th>
-                <th>Telefon</th>
-                <th>e-mail</th>
+                <th>
+					<a href="?sort=name">Imię i nazwisko klienta<br> / Nazwa firmy</a>
+				</th>
+				<th>
+					<a href="?sort=pesel">PESEL</a>
+				</th>
+				<th>
+					<a href="?sort=nip">NIP</a>
+				</th>
+				<th>
+					<a href="?sort=adress">Adres</a>
+				</th>
+				<th>
+					<a href="?sort=city">Miasto</a>
+				</th>
+                <th>
+					<a href="?sort=zip">Kod pocztowy</a>
+				</th>
+                <th>
+					<a href="?sort=phone">Telefon</a>
+				</th>
+                <th>
+					<a href="?sort=email">e-mail</a>
+				</th>
 				<th></th>
                 
 			</tr>

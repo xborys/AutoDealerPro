@@ -45,3 +45,36 @@ def ClientsList(request):
     clients_list = Clients.objects.all()
     return render(request, 'ClientsList.html', 
                   {'clients_list': clients_list})
+
+def ClientsList(request):
+    
+    search_name = request.GET.get('search_name')
+    sort = request.GET.get('sort', 'name')
+
+    clients_list = Clients.objects.all()
+
+    if search_name:
+        clients_list = clients_list.filter(Q(name__icontains=search_name) | Q(company_name__icontains=search_name))
+
+    # sortowanie danych
+    if sort == 'name':
+        clients_list = clients_list.order_by('name')
+    elif sort == 'pesel':
+        clients_list = clients_list.order_by('pesel')
+    elif sort == 'nip':
+        clients_list = clients_list.order_by('nip')
+    elif sort == 'adress':
+        clients_list = clients_list.order_by('adres')
+    elif sort == 'city':
+        clients_list = clients_list.order_by('city')
+    elif sort == 'zip':
+        clients_list = clients_list.order_by('zip')
+    elif sort == 'phone':
+        clients_list = clients_list.order_by('phone')
+    elif sort == 'email':
+        clients_list = clients_list.order_by('email')
+
+context = {
+    'clients_list': clients_list
+}
+return render(request, 'client_list.html', context)
