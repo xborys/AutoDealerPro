@@ -38,7 +38,11 @@
 						<button><i class="fa fa-cog"></i></button>
 					</td>
 				</tr>
-			{% endfor %}
+				{% empty %}
+				<tr>
+                    <td colspan="9">Brak klientów spełniających podane kryteria.</td>
+                </tr>
+				{% endfor %}
 		</tbody>
 	</table>
 
