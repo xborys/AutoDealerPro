@@ -23,8 +23,16 @@
 			{% for clients in clients_list %}
 				<tr>       
 					<td>{{clients.name}}</td>
-					<td>{{clients.pesel}}</td>
-					<td>{{clients.nip}}</td>
+					{% if clients.pesel == None %}
+						<td>-</td>
+					{% else %}
+						<td>{{clients.pesel}}</td>
+					{% endif %}
+					{% if clients.nip == None %}
+						<td>-</td>
+					{% else %}
+						<td>{{clients.nip}}</td>
+					{% endif %}
 					<td>{{clients.adress}}</td>
 					<td>{{clients.city}}</td>
 					<td>{{clients.zip}}</td>
