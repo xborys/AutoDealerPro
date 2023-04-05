@@ -62,3 +62,8 @@ def edit_client(request, client_id):
     return render(request, 'edit_client.html', 
                   {'client': client,
                    'form': form})
+
+def delete_client(request, client_id):
+    client = Clients.objects.get(pk=client_id)
+    client.delete()
+    return redirect('clients-list')

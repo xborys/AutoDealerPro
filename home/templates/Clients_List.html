@@ -33,6 +33,7 @@
 					<td>
 						<a href='{% url "show-client" clients.id %}' class="button"><i class="fa-regular fa-eye"></i></a>
 						<a href='{% url "edit-client" clients.id %}' class="button"><i class="fa-regular fa-edit"></i></a>
+						<a href='{% url "delete-client" clients.id %}' class="button"><i class="fa fa-trash"></i></a>
 					</td>
 				</tr>
 			{% endfor %}
