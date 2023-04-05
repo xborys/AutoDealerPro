@@ -4,11 +4,12 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('home', views.home, name='home'),
-    path('FAQ', views.FAQ, name='FAQ'),
+    path('faq', views.FAQ, name='faq'),
     path('index', views.index, name='index'),
-    path('CarList', views.CarList, name='CarList'),
-    path('LP',views.LP,name='LP'),
-    path('Sale_Transaction',views.Sale_Transaction,name='Sale_Transaction'),
-    path('add_client',views.Add_Clients,name='add_client'),
-    path('ClientsList',views.ClientsList,name='ClientsList'),
+    path('car-list', views.car_list, name='car-list'),
+    path('partner-list', views.partner_list, name='partner-list'),
+    path('sale_transaction', views.sale_transaction, name='sale-transaction'),
+    path('add-client', views.add_client, name='add-client'),
+    path('clients-list', views.clients_list , name='clients-list'),
+    path('show-client/<client_id>', views.show_client, name='show-client'),
 ]

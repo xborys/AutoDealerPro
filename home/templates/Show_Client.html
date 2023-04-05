@@ -1,0 +1,29 @@
+{% load static %}
+{% include 'head.html' %}
+
+{% block content %}
+
+<div class='container'>
+
+    <h1>{{client}}</h1>
+    <br/>
+
+    {% if client.pesel == None %}
+        <h2>Nazwa firmy: {{client.name}}</h2>
+        <h2>NIP: {{client.nip}}</h2>
+    {% else %}
+        <h2>Imię i nazwisko klienta: {{client.name}}</h2>
+        <h2>PESEL: {{client.pesel}}</h2>
+    {% endif %}
+
+    <h2>Adres: {{client.adress}}</h2>
+    <h2>Miasto: {{client.zip}} {{client.city}}</h2>
+    
+    <h2>Telefon: {{client.phone}}</h2>
+    <h2>e-mail: {{client.email}}</h2>
+
+</div>
+
+{% endblock %}
+
+{% include 'footer.html' %}

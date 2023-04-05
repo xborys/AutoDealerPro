@@ -12,20 +12,20 @@ def FAQ(request):
 def index(request):
     return render(request, 'index.html', {})
 
-def CarList(request):
+def car_list(request):
     car_list = Car.objects.all()
-    return render(request, 'CarList.html', 
+    return render(request, 'Car_List.html', 
                   {'car_list': car_list})
 
-def LP(request):
-    return render(request, 'partnerzy.html', {})
+def partner_list(request):
+    return render(request, 'partner_list.html', {})
 
-def Sale_Transaction(request):
+def sale_transaction(request):
     order_list = Orders.objects.all()
     return render(request, 'Sale_Transaction.html', 
                   {'order_list': order_list})
     
-def Add_Clients(request):
+def add_client(request):
     submitted = False
     
     if request.method == 'POST':
@@ -41,7 +41,13 @@ def Add_Clients(request):
     return render(request, 'Add_Clients.html',
                   {'form':form, 'submitted':submitted})
 
-def ClientsList(request):
+def clients_list(request):
     clients_list = Clients.objects.all()
-    return render(request, 'ClientsList.html', 
+    return render(request, 'Clients_List.html', 
                   {'clients_list': clients_list})
+
+def show_client(request, client_id):
+    client = Clients.objects.get(pk=client_id)
+   
+    return render(request, 'Show_Client.html',
+                  {'client': client})
