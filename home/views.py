@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Orders, Car, Clients
 from .forms import ClientsForm
 from django.http import HttpResponseRedirect
@@ -51,3 +51,14 @@ def show_client(request, client_id):
    
     return render(request, 'Show_Client.html',
                   {'client': client})
+
+def edit_client(request, client_id):
+    client = Clients.objects.get(pk=client_id)
+    form = ClientsForm(request.POST or None, instance=client)
+    if form.is_valid():
+        form.save()
+        return redirect('clients-list')
+
+    return render(request, 'edit_client.html', 
+                  {'client': client,
+                   'form': form})

@@ -32,13 +32,13 @@
                     <td>{{clients.email}}</td>
 					<td>
 						<a href='{% url "show-client" clients.id %}' class="button"><i class="fa-regular fa-eye"></i></a>
-						<a href='#' class="button"><i class="fa-regular fa-edit"></i></a>
+						<a href='{% url "edit-client" clients.id %}' class="button"><i class="fa-regular fa-edit"></i></a>
 					</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-
+	<br>
 {% endblock %}
 
 {% include 'footer.html' %}

@@ -12,4 +12,5 @@ urlpatterns = [
     path('add-client', views.add_client, name='add-client'),
     path('clients-list', views.clients_list , name='clients-list'),
     path('show-client/<client_id>', views.show_client, name='show-client'),
+    path('edit-client/<client_id>', views.edit_client, name='edit-client'),
 ]
