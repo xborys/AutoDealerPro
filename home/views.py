@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Orders, Car, Clients
-from .forms import ClientsForm
+from .forms import ClientsForm, OrderForm
 from django.http import HttpResponseRedirect
 
 def home(request):
@@ -67,3 +67,41 @@ def delete_client(request, client_id):
     client = Clients.objects.get(pk=client_id)
     client.delete()
     return redirect('clients-list')
+
+def add_order(request):
+    submitted = False
+    
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add-order?submitted=True')
+    else:
+        form = OrderForm
+        if "submitted" in request.GET:
+            submitted = True
+
+    return render(request, 'add_order.html',
+                  {'form':form, 'submitted':submitted})
+
+def edit_order(request, order_id):
+    order = Orders.objects.get(pk=order_id)
+    form = OrderForm(request.POST or None, instance=order)
+    if form.is_valid():
+        form.save()
+        return redirect('sale-transaction')
+
+    return render(request, 'edit_order.html', 
+                  {'order': order,
+                   'form': form})
+
+def delete_order(request, order_id):
+    order = Orders.objects.get(pk=order_id)
+    order.delete()
+    return redirect('sale-transaction')
+
+def show_order(request, order_id):
+    order = Orders.objects.get(pk=order_id)
+
+    return render (request, 'show_order.html',
+                   {'order': order})

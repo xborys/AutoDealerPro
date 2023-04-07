@@ -2,7 +2,7 @@
 {% include 'head.html' %}
 {% block content %}
 
-    <button class="add-transaction-button">Dodaj transakcję</button>
+    <button class="add-transaction-button" onclick="location.href='add-order'">Dodaj transakcję</button>
 	<table>
 		<thead>
 			<tr>
@@ -29,13 +29,14 @@
 					<td>{{order.order_price}} PLN</td>
 					<td>{{order.employee}}</td>
 					<td>
-						<button><i class="fa-regular fa-eye"></i></button>
-						<button><i class="fa fa-cog"></i></button>
+						<a href='{% url "show-order" order.order_number %}' class="button"><i class="fa-regular fa-eye"></i></a>
+						<a href='{% url "edit-order" order.order_number %}' class="button"><i class="fa-regular fa-edit"></i></a>
+						<a href='{% url "delete-order" order.order_number %}' class="button"><i class="fa fa-trash"></i></a>
 					</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-
+	<br>
 {% endblock %}
 {% include 'footer.html' %}

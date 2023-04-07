@@ -48,7 +48,7 @@ class Order_status(models.Model):
         return self.status
 
 class Orders(models.Model):
-    order_number = models.CharField('Numer transakcji', max_length=50)
+    order_number = models.BigAutoField(primary_key=True)
     client = models.ForeignKey(Clients, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
@@ -57,5 +57,5 @@ class Orders(models.Model):
     order_status = models.ForeignKey(Order_status, on_delete=models.CASCADE)
     
     def __str__(self):
-        return '#' + self.order_number + ' | ' + self.client.name + ' | ' + self.car.make + ' ' + self.car.model
+        return self.client.name + ' | ' + self.car.make + ' ' + self.car.model
  

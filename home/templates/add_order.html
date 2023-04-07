@@ -1,0 +1,30 @@
+{% load static %}
+{% include 'head.html' %}
+   
+{% block content %}
+<div class='container'>
+
+        <h1>Dodawanie transakcji sprzedazy</h1>
+        <br/>
+
+        {% if submitted %}
+
+                Dodano transakcję sprzedazy!
+
+        {% else %}
+            
+            <form action="" method=POST>
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <input type='submit' value='Dodaj' class='btn btn-secondary'>
+            </form>
+            <br/>
+
+        {% endif %}
+    
+</div>
+{% endblock %}
+
+{% include 'footer.html' %}
