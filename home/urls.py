@@ -18,4 +18,6 @@ urlpatterns = [
     path('edit-order/<order_id>', views.edit_order, name='edit-order'),
     path('delete-order/<order_id>', views.delete_order, name='delete-order'),
     path('show-order/<order_id>', views.show_order, name='show-order'),
+    
+    
 ]
