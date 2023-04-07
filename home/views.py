@@ -67,3 +67,6 @@ def delete_client(request, client_id):
     client = Clients.objects.get(pk=client_id)
     client.delete()
     return redirect('clients-list')
+
+
+
