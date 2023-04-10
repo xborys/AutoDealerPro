@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Orders, Car, Clients
 from .forms import ClientsForm, OrderForm
 from django.http import HttpResponseRedirect
+from django.db.models import Q
+
 
 def home(request):
     return render(request, 'index.html', {})
@@ -43,8 +45,10 @@ def add_client(request):
 
 def clients_list(request):
     clients_list = Clients.objects.all()
-    return render(request, 'Clients_List.html', 
-                  {'clients_list': clients_list})
+    context = {'clients_list': clients_list}
+
+    return render(request, 'clients_list.html', context)
+
 
 def show_client(request, client_id):
     client = Clients.objects.get(pk=client_id)

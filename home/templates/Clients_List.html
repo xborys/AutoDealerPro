@@ -3,51 +3,63 @@
    
 {% block content %}
 
-    <button class="add-transaction-button" onclick="location.href='add_client'" >Dodaj klienta</button>
-	<table>
-		<thead>
-			<tr>
-                <th>Imię i nazwisko klienta<br> / Nazwa firmy</th>
-				<th>PESEL</th>
-				<th>NIP</th>
-				<th>Adres</th>
-				<th>Miasto</th>
-                <th>Kod pocztowy</th>
-                <th>Telefon</th>
-                <th>e-mail</th>
-				<th></th>
-                
-			</tr>
-		</thead>
-		<tbody>
-			{% for clients in clients_list %}
-				<tr>       
-					<td>{{clients.name}}</td>
-					{% if clients.pesel == None %}
-						<td>-</td>
-					{% else %}
-						<td>{{clients.pesel}}</td>
-					{% endif %}
-					{% if clients.nip == None %}
-						<td>-</td>
-					{% else %}
-						<td>{{clients.nip}}</td>
-					{% endif %}
-					<td>{{clients.adress}}</td>
-					<td>{{clients.city}}</td>
-					<td>{{clients.zip}}</td>
-					<td>{{clients.phone}}</td>
-                    <td>{{clients.email}}</td>
-					<td>
-						<a href='{% url "show-client" clients.id %}' class="button"><i class="fa-regular fa-eye"></i></a>
-						<a href='{% url "edit-client" clients.id %}' class="button"><i class="fa-regular fa-edit"></i></a>
-						<a href='{% url "delete-client" clients.id %}' class="button"><i class="fa fa-trash"></i></a>
-					</td>
+<button class="add-transaction-button" onclick="location.href='add_client'" >Dodaj klienta</button>
+
+<div class="container">
+	<form id="filter-form">
+		<table>
+			<thead>
+				<tr>
+					<th>Imię i nazwisko klienta<br> / Nazwa firmy</th>
+					<th>PESEL</th>
+					<th>NIP</th>
+					<th>Adres</th>
+					<th>Miasto</th>
+					<th>Kod pocztowy</th>
+					<th>Telefon</th>
+					<th>e-mail</th>
+					<th></th>
 				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for clients in clients_list %}
+					<tr>       
+						<td>{{clients.name}}</td>
+						{% if clients.pesel == None %}
+							<td>-</td>
+						{% else %}
+							<td>{{clients.pesel}}</td>
+						{% endif %}
+						{% if clients.nip == None %}
+							<td>-</td>
+						{% else %}
+							<td>{{clients.nip}}</td>
+						{% endif %}
+						<td>{{clients.adress}}</td>
+						<td>{{clients.city}}</td>
+						<td>{{clients.zip}}</td>
+						<td>{{clients.phone}}</td>
+						<td>{{clients.email}}</td>
+						<td>
+							<a href='{% url "show-client" clients.id %}' class="button"><i class="fa-regular fa-eye"></i></a>
+							<a href='{% url "edit-client" clients.id %}' class="button"><i class="fa-regular fa-edit"></i></a>
+							<a href='{% url "delete-client" clients.id %}' class="button" onclick="return confirmDelete();"><i class="fa fa-trash"></i></a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<br>
+	</form>
 	<br>
+</div>
+
+<script>
+	function confirmDelete() {
+    		return confirm("Czy na pewno chcesz usunąć tego klienta?");
+ 		}
+</script>
+
 {% endblock %}
 
 {% include 'footer.html' %}
