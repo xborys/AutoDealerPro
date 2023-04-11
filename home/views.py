@@ -24,9 +24,30 @@ def partner_list(request):
     return render(request, 'partner_list.html', {})
 
 def sale_transaction(request):
-    order_list = Orders.objects.all()
-    return render(request, 'Sale_Transaction.html', 
-                  {'order_list': order_list})
+    orders = Orders.objects.all()
+
+    if request.GET.get('search_client'):
+        client_name = request.GET.get('search_client')
+        if client_name:
+            orders = orders.filter(client__name__icontains=client_name)
+
+    if request.GET.get('search_make'):
+        make = request.GET.get('search_make')
+        if make:
+            orders = orders.filter(car__make__icontains=make)
+
+    if request.GET.get('search_model'):
+        model = request.GET.get('search_model')
+        if model:
+            orders = orders.filter(car__model__icontains=model)
+
+    if request.GET.get('search_vin'):
+        vin = request.GET.get('search_vin')
+        if vin:
+            orders = orders.filter(car__vin__icontains=vin)
+
+    context = {'order_list': orders}
+    return render(request, 'Sale_Transaction.html', context)
     
 def add_client(request):
     submitted = False

@@ -2,6 +2,30 @@
 {% include 'head.html' %}
 {% block content %}
 <button class="add-transaction-button" onclick="location.href='add-order'">Dodaj transakcję</button>
+
+<div class="search-form mb-3">
+	<form method="GET">
+		<div class="row g-3">
+			<div class="col-md-3">
+				<input type="text" name="search_client" class="form-control" placeholder="Imię i nazwisko klienta">
+			</div>
+			<div class="col-md-3">
+				<input type="text" name="search_make" class="form-control" placeholder="Marka">
+			</div>
+			<div class="col-md-3">
+				<input type="text" name="search_model" class="form-control" placeholder="Model">
+			</div>
+			<div class="col-md-3">
+				<input type="text" name="search_vin" class="form-control" placeholder="Numer VIN">
+			</div>
+			<div class="col-md-2">
+				<button type="submit" class="btn btn-primary">Szukaj</button>
+			</div>
+		</div>
+	</form>
+</div>
+<br>
+
 	<table>
 		<thead>
 			<tr>
