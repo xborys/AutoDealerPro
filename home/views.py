@@ -46,9 +46,23 @@ def add_client(request):
 
 @login_required
 def clients_list(request):
-    clients_list = Clients.objects.all()
-    context = {'clients_list': clients_list}
+    order_by = request.GET.get('order_by', 'name')
+    clients = Clients.objects.all().order_by(order_by)
 
+    if request.GET.get('search_name'):
+        clients = clients.filter(name__icontains=request.GET.get('search_name'))
+
+    if request.GET.get('search_pesel'):
+        pesel = request.GET.get('search_pesel')
+        if pesel:
+            clients = clients.filter(pesel=pesel)
+
+    if request.GET.get('search_nip'):
+        nip = request.GET.get('search_nip')
+        if nip:
+            clients = clients.filter(nip=nip)
+
+    context = {'clients': clients, 'order_by': order_by}
     return render(request, 'clients_list.html', context)
 
 @login_required

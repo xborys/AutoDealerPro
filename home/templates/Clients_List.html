@@ -6,23 +6,40 @@
 <button class="add-transaction-button" onclick="location.href='add_client'" >Dodaj klienta</button>
 
 <div class="container">
+	<div class="search-form mt-3 mb-3 text-center">
+		<form class="form-inline" method="GET">
+		  <div class="form-group mr-2">
+			<input type="text" name="search_name" class="form-control" placeholder="Imię i nazwisko klienta / Nazwa firmy">
+		  </div>
+		  <div class="form-group mr-2">
+			<input type="text" name="search_pesel" class="form-control" placeholder="PESEL">
+		  </div>
+		  <div class="form-group mr-2">
+			<input type="text" name="search_nip" class="form-control" placeholder="NIP">
+		  </div>
+		  <button type="submit" class="btn btn-secondary">Szukaj</button>
+		</form>
+	  </div>
+	  <br>
+
 	<form id="filter-form">
 		<table>
 			<thead>
 				<tr>
-					<th>Imię i nazwisko klienta<br> / Nazwa firmy</th>
-					<th>PESEL</th>
-					<th>NIP</th>
-					<th>Adres</th>
-					<th>Miasto</th>
-					<th>Kod pocztowy</th>
-					<th>Telefon</th>
-					<th>e-mail</th>
-					<th></th>
+				  <th><a href="?order_by=name{% if order_by == 'name' %}&desc=True{% endif %}">Imię i nazwisko klienta <br>/ Nazwa firmy</a></th>
+				  <th><a href="?order_by=pesel{% if order_by == 'pesel' %}&desc=True{% endif %}">PESEL</a></th>
+				  <th><a href="?order_by=nip{% if order_by == 'nip' %}&desc=True{% endif %}">NIP</a></th>
+				  <th><a href="?order_by=adress{% if order_by == 'adress' %}&desc=True{% endif %}">Adres</a></th>
+				  <th><a href="?order_by=city{% if order_by == 'city' %}&desc=True{% endif %}">Miasto</a></th>
+				  <th><a href="?order_by=zip{% if order_by == 'zip' %}&desc=True{% endif %}">Kod pocztowy</a></th>
+				  <th><a href="?order_by=phone{% if order_by == 'phone' %}&desc=True{% endif %}">Telefon</a></th>
+				  <th><a href="?order_by=email{% if order_by == 'email' %}&desc=True{% endif %}">E-mail</a></th>
+				  <th></th>
 				</tr>
-			</thead>
+			  </thead>
+			  
 			<tbody>
-				{% for clients in clients_list %}
+				{% for clients in clients %}
 					<tr>       
 						<td>{{clients.name}}</td>
 						{% if clients.pesel == None %}
