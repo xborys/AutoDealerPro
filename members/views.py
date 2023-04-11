@@ -10,13 +10,13 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('../admin/')
+            return redirect('index')
         else:
             messages.success(request, 'Wprowadzono nieprawidłowy login lub hasło')
-            return redirect('login')
+            return redirect('members:login-user')
         
     else:
-        return render(request, 'authenticate/login.html', {})
+        return render(request, 'authenticate/login-user.html', {})
 
 
     

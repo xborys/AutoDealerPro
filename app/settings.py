@@ -1,9 +1,11 @@
 import os
-
+from django.urls import reverse
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+ROOT_URLCONF = 'home.urls', 'members.urls'
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,6 +33,9 @@ INSTALLED_APPS = [
     'members',
 ]
 
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '../members/login-user/'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -46,7 +51,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -3,6 +3,7 @@ from .models import Orders, Car, Clients
 from .forms import ClientsForm, OrderForm
 from django.http import HttpResponseRedirect
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -43,19 +44,21 @@ def add_client(request):
     return render(request, 'Add_Clients.html',
                   {'form':form, 'submitted':submitted})
 
+@login_required
 def clients_list(request):
     clients_list = Clients.objects.all()
     context = {'clients_list': clients_list}
 
     return render(request, 'clients_list.html', context)
 
-
+@login_required
 def show_client(request, client_id):
     client = Clients.objects.get(pk=client_id)
    
     return render(request, 'Show_Client.html',
                   {'client': client})
 
+@login_required
 def edit_client(request, client_id):
     client = Clients.objects.get(pk=client_id)
     form = ClientsForm(request.POST or None, instance=client)
@@ -67,11 +70,13 @@ def edit_client(request, client_id):
                   {'client': client,
                    'form': form})
 
+@login_required
 def delete_client(request, client_id):
     client = Clients.objects.get(pk=client_id)
     client.delete()
     return redirect('clients-list')
 
+@login_required
 def add_order(request):
     submitted = False
     
@@ -88,6 +93,7 @@ def add_order(request):
     return render(request, 'add_order.html',
                   {'form':form, 'submitted':submitted})
 
+@login_required
 def edit_order(request, order_id):
     order = Orders.objects.get(pk=order_id)
     form = OrderForm(request.POST or None, instance=order)
@@ -99,11 +105,13 @@ def edit_order(request, order_id):
                   {'order': order,
                    'form': form})
 
+@login_required
 def delete_order(request, order_id):
     order = Orders.objects.get(pk=order_id)
     order.delete()
     return redirect('sale-transaction')
 
+@login_required
 def show_order(request, order_id):
     order = Orders.objects.get(pk=order_id)
 
