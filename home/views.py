@@ -23,6 +23,7 @@ def car_list(request):
 def partner_list(request):
     return render(request, 'partner_list.html', {})
 
+@login_required
 def sale_transaction(request):
     orders = Orders.objects.all()
 
@@ -48,7 +49,8 @@ def sale_transaction(request):
 
     context = {'order_list': orders}
     return render(request, 'Sale_Transaction.html', context)
-    
+
+@login_required    
 def add_client(request):
     submitted = False
     
@@ -56,7 +58,7 @@ def add_client(request):
         form = ClientsForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/add_client?submitted=True')
+            return HttpResponseRedirect('/add-client?submitted=True')
     else:
         form = ClientsForm
         if "submitted" in request.GET:

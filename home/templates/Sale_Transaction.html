@@ -3,6 +3,7 @@
 {% block content %}
 <button class="add-transaction-button" onclick="location.href='add-order'">Dodaj transakcję</button>
 
+<div class="container">
 <div class="search-form mb-3">
 	<form method="GET">
 		<div class="row g-3">
@@ -62,7 +63,7 @@
 		</tbody>
 	</table>
 	<br>
-
+</div>
 	<script>
 		function confirmDelete() {
     		return confirm("Czy na pewno chcesz usunąć tą transakcję?");
