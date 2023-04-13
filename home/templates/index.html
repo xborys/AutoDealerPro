@@ -421,13 +421,12 @@
                               <div class="section-title">
                                    <h2>Skontaktuj się z Nami<small>Pozytywne relacje z klientami to klucz do sukcesu!</small></h2>
                               </div>
-
+                              
                               <div class="col-md-12 col-sm-12">
-                                   <input type="text" class="form-control" placeholder="Imię" name="name" required>
-                    
-                                   <input type="email" class="form-control" placeholder="Adres email" name="email" required>
-
-                                   <textarea class="form-control" rows="6" placeholder="Opis wiadomości" name="message" required></textarea>
+                                   
+                                   {% csrf_token %}
+                                   {{ contact_form.as_p}}
+                                   
                               </div>
 
                               <div class="col-md-4 col-sm-12">

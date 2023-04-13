@@ -1,19 +1,45 @@
 from django.shortcuts import render, redirect
-from .models import Orders, Car, Clients
-from .forms import ClientsForm, OrderForm
+from .models import Orders, Car, Clients, Contact
+from .forms import ClientsForm, OrderForm, ContactForm
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return render(request, 'index.html', {})
+    submitted = False
+
+    if request.method == 'POST':
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            contact_form.save()
+            return HttpResponseRedirect('/index?submitted=True')
+    else:
+        contact_form = ContactForm
+        if "submitted" in request.GET:
+            submitted = True
+
+    return render(request, 'index.html',
+                  {'contact_form': contact_form, 'submitted': submitted})
 
 def FAQ(request):
     return render(request, 'FAQ.html', {})
 
 def index(request):
-    return render(request, 'index.html', {})
+    submitted = False
+
+    if request.method == 'POST':
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            contact_form.save()
+            return HttpResponseRedirect('/index?submitted=True')
+    else:
+        contact_form = ContactForm
+        if "submitted" in request.GET:
+            submitted = True
+
+    return render(request, 'index.html',
+                  {'contact_form': contact_form, 'submitted': submitted})
 
 def car_list(request):
     car_list = Car.objects.all()

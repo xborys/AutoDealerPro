@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Clients, Orders
+from .models import Clients, Orders, Contact, Car
 from django.forms.widgets import NumberInput
 from django.contrib.admin.widgets import AdminDateWidget
 
@@ -59,3 +59,19 @@ class OrderForm(ModelForm):
             'order_status': forms.Select(attrs={'class':'form-control'}),
         }
 
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contact
+        fields = ('name', 'email', 'message')
+
+        labels = {
+            'name': '',
+            'email': '',
+            'message': '',
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Imię i nazwisko'}),
+            'email': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Adres email'}),
+            'message': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Wiadomość'}),
+        }

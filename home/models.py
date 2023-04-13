@@ -59,3 +59,10 @@ class Orders(models.Model):
     def __str__(self):
         return self.client.name + ' | ' + self.car.make + ' ' + self.car.model
  
+class Contact(models.Model):
+    name = models.CharField('Imię i nazwisko', max_length=50)
+    email = models.EmailField('Email')
+    message = models.TextField('Wiadomość')
+    
+    def __str__(self):
+        return self.name
