@@ -16,7 +16,13 @@ class vehicle_make(models.Model):
     make = models.CharField('Marka', max_length=50)
 
     def __str__(self):
-        return self.make
+        return self.make\
+        
+class yes_no(models.Model):
+    yes_no = models.CharField('Wartość', max_length=3)
+
+    def __str__(self):
+        return self.yes_no
 
 class Car(models.Model):
     make = models.ForeignKey(vehicle_make, on_delete=models.CASCADE)
@@ -86,6 +92,7 @@ class Contact(models.Model):
     name = models.CharField('Imię i nazwisko', max_length=50)
     email = models.EmailField('Email')
     message = models.TextField('Wiadomość')
+    answer = models.ForeignKey(yes_no, on_delete=models.CASCADE, default=1)
     
     def __str__(self):
         return self.name

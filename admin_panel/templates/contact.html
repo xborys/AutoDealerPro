@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Lista samochodów {% endblock %}
+
+{% block content %}
+    
+{% if messages %}
+    {% for message in messages %}
+        {% if 'success' in message.tags %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </div>
+        {% elif 'error' in message.tags %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                Formularz kontaktowy:
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Imie, nazwisko</th>
+                            <th>email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Imie, nazwisko</th>
+                            <th>email</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for contact in contact %}
+                            <tr>
+                                <td>
+                                {% if 'Nie' in contact.answer.yes_no %}
+                                    OLD
+                                {% else %}
+                                    NEW
+                                {% endif %}
+                                </td>     
+                                <td>{{ contact.name }}</td>
+                                <td>{{ contact.email }}</td>
+                                <td>
+                                    <a href='#' class="button"><i class="fa fa-user"></i></a>
+                                    <a href='#' class="button"><i class="fa fa-edit"></i></a>
+                                    <a href='#' class="button" onclick="return confirmDelete();"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

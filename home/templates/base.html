@@ -79,6 +79,7 @@
                         <h6 class="collapse-header">Dostępne opcje:</h6>
                         <a class="collapse-item" href="{% url 'admin_panel:clients' %}">Lista klientów</a>
                         <a class="collapse-item" href="{% url 'admin_panel:add-client' %}">Dodaj klienta</a>
+                        <a class="collapse-item" href="{% url 'admin_panel:contact' %}">Formularz kontaktowy</a>
                     </div>
                 </div>
             </li>
@@ -323,6 +324,9 @@
     <!-- Page level custom scripts -->
     <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
     <script src="{% static 'admin_panel/js/demo/chart-pie-demo.js' %}"></script>
+
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/e1dad58639.js" crossorigin="anonymous"></script>
 
 </body>
 

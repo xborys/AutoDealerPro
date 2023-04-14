@@ -50,3 +50,10 @@ def del_client(request, client_id):
     client.delete()
     messages.error(request, 'Klient ' + str(client) +' został usunięty.')
     return redirect('admin_panel:clients')
+
+@login_required
+def contact(request):
+    contact = Contact.objects.all()
+
+    return render(request, 'contact.html',
+                    {'contact' : contact})
