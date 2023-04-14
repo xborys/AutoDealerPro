@@ -76,43 +76,43 @@ def sale_transaction(request):
     context = {'order_list': orders}
     return render(request, 'Sale_Transaction.html', context)
 
-@login_required    
-def add_client(request):
-    submitted = False
+# @login_required    
+# def add_client(request):
+#     submitted = False
     
-    if request.method == 'POST':
-        form = ClientsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/add-client?submitted=True')
-    else:
-        form = ClientsForm
-        if "submitted" in request.GET:
-            submitted = True
+#     if request.method == 'POST':
+#         form = ClientsForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect('/add-client?submitted=True')
+#     else:
+#         form = ClientsForm
+#         if "submitted" in request.GET:
+#             submitted = True
 
-    return render(request, 'Add_Clients.html',
-                  {'form':form, 'submitted':submitted})
+#     return render(request, 'Add_Clients.html',
+#                   {'form':form, 'submitted':submitted})
 
-@login_required
-def clients_list(request):
-    order_by = request.GET.get('order_by', 'name')
-    clients = Clients.objects.all().order_by(order_by)
+# @login_required
+# def clients_list(request):
+#     order_by = request.GET.get('order_by', 'name')
+#     clients = Clients.objects.all().order_by(order_by)
 
-    if request.GET.get('search_name'):
-        clients = clients.filter(name__icontains=request.GET.get('search_name'))
+#     if request.GET.get('search_name'):
+#         clients = clients.filter(name__icontains=request.GET.get('search_name'))
 
-    if request.GET.get('search_pesel'):
-        pesel = request.GET.get('search_pesel')
-        if pesel:
-            clients = clients.filter(pesel=pesel)
+#     if request.GET.get('search_pesel'):
+#         pesel = request.GET.get('search_pesel')
+#         if pesel:
+#             clients = clients.filter(pesel=pesel)
 
-    if request.GET.get('search_nip'):
-        nip = request.GET.get('search_nip')
-        if nip:
-            clients = clients.filter(nip=nip)
+#     if request.GET.get('search_nip'):
+#         nip = request.GET.get('search_nip')
+#         if nip:
+#             clients = clients.filter(nip=nip)
 
-    context = {'clients': clients, 'order_by': order_by}
-    return render(request, 'clients_list.html', context)
+#     context = {'clients': clients, 'order_by': order_by}
+#     return render(request, 'clients_list.html', context)
 
 @login_required
 def show_client(request, client_id):

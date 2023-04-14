@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %} Lista samochodów {% endblock %}
+
+{% block content %}
+    
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Lista samochodów</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Marka</th>
+                            <th>Model</th>
+                            <th>Rok produkcji</th>
+                            <th>Przebieg</th>
+                            <th>Paliwo</th>
+                            <th>Moc</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Marka</th>
+                            <th>Model</th>
+                            <th>Rok produkcji</th>
+                            <th>Przebieg</th>
+                            <th>Paliwo</th>
+                            <th>Moc</th>
+                            <th>Cena</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for car in car_list %}
+                            <tr>
+                                <td>{{ car.make }}</td>
+                                <td>{{ car.model}}</td>
+                                <td>{{ car.year}}</td>
+                                <td>{{ car.mileage}} km</td>
+                                <td>{{ car.fuel_type}}</td>
+                                <td>{{ car.engine_power}} KM</td>
+                                <td>{{ car.price }} PLN</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

@@ -33,7 +33,7 @@ class Car(models.Model):
     image = models.ImageField('Zdjęcia', upload_to='images/',blank=True, null=True)
 
     def __str__(self):
-        return self.make + ' ' + self.model
+        return str(self.make) + ' ' + self.model
     
     
 class Clients(models.Model):

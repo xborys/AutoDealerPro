@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.urls import reverse_lazy
-
+from .models import *
 
 def login_user(request):
     if request.method == 'POST':
@@ -19,6 +19,5 @@ def login_user(request):
         
     else:
         return render(request, 'authenticate/login-user.html', {})
-
 
     

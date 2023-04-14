@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Lista samochodów {% endblock %}
+
+{% block content %}
+    
+{% if messages %}
+    {% for message in messages %}
+        {% if 'success' in message.tags %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </div>
+        {% elif 'error' in message.tags %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                Lista klientów
+                <a href="{% url 'admin_panel:add-client' %}" class="btn btn-primary btn-icon-split btn-sm float-right">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Dodaj klienta</span>
+                </a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th><a href="?order_by=name{% if order_by == 'name' %}&desc=True{% endif %}">Imię i nazwisko klienta <br>/ Nazwa firmy</a></th>
+                            <th><a href="?order_by=pesel{% if order_by == 'pesel' %}&desc=True{% endif %}">PESEL</a></th>
+                            <th><a href="?order_by=nip{% if order_by == 'nip' %}&desc=True{% endif %}">NIP</a></th>
+                            <th><a href="?order_by=adress{% if order_by == 'adress' %}&desc=True{% endif %}">Adres</a></th>
+                            <th><a href="?order_by=city{% if order_by == 'city' %}&desc=True{% endif %}">Miasto</a></th>
+                            <th><a href="?order_by=zip{% if order_by == 'zip' %}&desc=True{% endif %}">Kod pocztowy</a></th>
+                            <th><a href="?order_by=phone{% if order_by == 'phone' %}&desc=True{% endif %}">Telefon</a></th>
+                            <th><a href="?order_by=email{% if order_by == 'email' %}&desc=True{% endif %}">E-mail</a></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Imię i nazwisko klienta <br>/ Nazwa firmy</th>
+                            <th>PESEL</th>
+                            <th>NIP</th>
+                            <th>Adres</th>
+                            <th>Miasto</th>
+                            <th>Kod pocztowy</th>
+                            <th>Telefon</th>
+                            <th>E-mail</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for clients in clients %}
+                            <tr>       
+                                <td>{{clients.name}}</td>
+                                {% if clients.pesel == None %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td>{{clients.pesel}}</td>
+                                {% endif %}
+                                {% if clients.nip == None %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td>{{clients.nip}}</td>
+                                {% endif %}
+                                <td>{{clients.adress}}</td>
+                                <td>{{clients.city}}</td>
+                                <td>{{clients.zip}}</td>
+                                <td>{{clients.phone}}</td>
+                                <td>{{clients.email}}</td>
+                                <td>
+                                    <a href='{% url "show-client" clients.id %}' class="button"><i class="fa fa-user"></i></a>
+                                    <a href='{% url "edit-client" clients.id %}' class="button"><i class="fa fa-edit"></i></a>
+                                    <a href='{% url "admin_panel:del-client" clients.id %}' class="button" onclick="return confirmDelete();"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
