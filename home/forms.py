@@ -75,3 +75,38 @@ class ContactForm(ModelForm):
             'email': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Adres email'}),
             'message': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Wiadomość'}),
         }
+
+class CarForm(ModelForm):
+    class Meta:
+        model = Car
+        fields = ('make', 'model', 'vin', 'year', 'price', 'mileage', 'description', 'engine_capacity', 'engine_power', 'fuel_type', 'gear', 'image')
+
+        labels = {
+            'make': '',
+            'model': '',
+            'year': '',
+            'mileage': '',
+            'engine_capacity': '',
+            'engine_power': '',
+            'fuel_type': '',
+            'gear': '',
+            'vin': '',
+            'price': '',
+            'description': '',
+            'image': '',
+        }
+
+        widgets = {
+            'make': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Marka'}),
+            'model': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Model'}),
+            'year': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Rok produkcji'}),
+            'mileage': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Przebieg'}),
+            'engine_capacity': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Pojemność silnika'}),
+            'engine_power': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Moc silnika'}),
+            'fuel_type': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Rodzaj paliwa'}),
+            'gear': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Skrzynia biegów'}),
+            'vin': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Numer VIN'}),
+            'price': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Cena'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Opis'}),
+            'image': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Zdjęcie'}),
+        }

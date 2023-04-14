@@ -1,17 +1,40 @@
 from django.db import models
 
-class Car(models.Model):
+class CarFuelType(models.Model):
+    fuel_type = models.CharField('Rodzaj paliwa', max_length=50)
+
+    def __str__(self):
+        return self.fuel_type
+    
+class CarGear(models.Model):
+    gear = models.CharField('Skrzynia biegów', max_length=50)
+
+    def __str__(self):
+        return self.gear
+    
+class vehicle_make(models.Model):
     make = models.CharField('Marka', max_length=50)
+
+    def __str__(self):
+        return self.make
+
+class Car(models.Model):
+    make = models.ForeignKey(vehicle_make, on_delete=models.CASCADE)
     model = models.CharField('Model', max_length=50)
     vin = models.CharField('VIN', max_length=17)
     year = models.IntegerField('Rok produkcji')
     price = models.IntegerField('Cena (PLN)')
     mileage = models.IntegerField('Przebieg (km)')
     description = models.TextField('Opis')
+    engine_capacity = models.IntegerField('Pojemność silnika (cm3)')
+    engine_power = models.IntegerField('Moc silnika (KM)')
+    fuel_type = models.ForeignKey(CarFuelType, on_delete=models.CASCADE)
+    gear = models.ForeignKey(CarGear, on_delete=models.CASCADE)
     image = models.ImageField('Zdjęcia', upload_to='images/',blank=True, null=True)
 
     def __str__(self):
         return self.make + ' ' + self.model
+    
     
 class Clients(models.Model):
     name = models.CharField('Imię i nazwisko / Nazwa firmy', max_length=50)

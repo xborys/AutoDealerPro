@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Orders, Car, Clients, Contact
+from .models import *
 from .forms import ClientsForm, OrderForm, ContactForm
 from django.http import HttpResponseRedirect
 from django.db.models import Q
