@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from home.models import *
+from .models import *
 from django.forms.widgets import NumberInput
 from django.contrib.admin.widgets import AdminDateWidget
 
@@ -97,16 +98,36 @@ class CarForm(ModelForm):
         }
 
         widgets = {
-            'make': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Marka'}),
-            'model': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Model'}),
-            'year': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Rok produkcji'}),
-            'mileage': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Przebieg'}),
-            'engine_capacity': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Pojemność silnika'}),
-            'engine_power': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Moc silnika'}),
-            'fuel_type': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Rodzaj paliwa'}),
-            'gear': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Skrzynia biegów'}),
-            'vin': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Numer VIN'}),
-            'price': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Cena'}),
-            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Opis'}),
-            'image': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Zdjęcie'}),
+            'make': forms.Select(attrs={'class':'form-control', 'placeholder':'Marka', 'required': True}),
+            'model': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Model', 'required': True}),
+            'year': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Rok produkcji', 'required': True}),
+            'mileage': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Przebieg', 'required': True}),
+            'engine_capacity': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Pojemność silnika', 'required': True}),
+            'engine_power': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Moc silnika', 'required': True}),
+            'fuel_type': forms.Select(attrs={'class':'form-control', 'placeholder':'Rodzaj paliwa', 'required': True}),
+            'gear': forms.Select(attrs={'class':'form-control', 'placeholder':'Skrzynia biegów', 'required': True}),
+            'vin': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Numer VIN', 'required': True}),
+            'price': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Cena', 'required': True}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Opis', 'required': True}),
+            'image': forms.FileInput(attrs={'class':'form-control'}),
         }
+
+class TransactionForm(ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ('client', 'car', 'price', 'is_paid')
+
+        labels = {
+            'client': '',
+            'car': '',
+            'price': '',
+            'is_paid': '',
+        }
+
+        widgets = {
+            'client': forms.Select(attrs={'class':'form-control'}),
+            'car': forms.Select(attrs={'class':'form-control'}),
+            'price': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Kwota transakcji'}),
+            'is_paid': forms.Select(attrs={'class':'form-control'}),
+        }
+

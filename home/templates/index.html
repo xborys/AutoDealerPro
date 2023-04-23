@@ -1,5 +1,6 @@
+{% extends 'head.html' %}
 {% load static %}
-{% include 'head.html' %}
+{% block content %}
 
      <!-- HOME -->
      <section id="home">
@@ -11,7 +12,7 @@
                                    <div class="col-md-6 col-sm-12">
                                         <h1>Szczęśliwi klienci</h1>
                                         <h3>Nasze usługi stawiamy na najwyższym poziomie i zawsze staramy się zadowolić naszych klientów, dlatego chcemy się z nimi pochwalić. Oto kilka przykładów referencji od naszych klientów.</h3>
-                                        <a href="CarList" class="section-btn btn btn-default">Poznaj ofertę</a>
+                                        <a href="{% url 'home:car-list' %}" class="section-btn btn btn-default">Poznaj ofertę</a>
                                    </div>
                               </div>
                          </div>
@@ -23,7 +24,7 @@
                                    <div class="col-md-6 col-sm-12">
                                         <h1>Kompleksowa pomoc</h1>
                                         <h3>Nasi klienci mogą liczyć na pełen profesjonalizm i najwyższą jakość usług. Od samego początku istnienia naszej firmy stawiamy na rzetelność, uczciwość i fachowość. Dzięki temu zyskaliśmy zaufanie tysięcy zadowolonych klientów, którzy polecają nasze usługi swoim bliskim i znajomym.</h3>
-                                        <a href="CarList" class="section-btn btn btn-default">Poznaj ofertę</a>
+                                        <a href="{% url 'home:car-list' %}" class="section-btn btn btn-default">Poznaj ofertę</a>
                                    </div>
                               </div>
                          </div>
@@ -35,7 +36,7 @@
                                    <div class="col-md-6 col-sm-12">
                                         <h1>Szeroka oferta</h1>
                                         <h3>W ofercie posiadamy różne marki i modele, w zależności od potrzeb i preferencji klientów. Znajdziesz u nas zarówno samochody osobowe, jak i dostawcze, o różnym przeznaczeniu i pojemności silnika. Wszystko trzego potrzebujesz, znajdziesz u Nas!</h3>
-                                        <a href="CarList" class="section-btn btn btn-default">Poznaj ofretę</a>
+                                        <a href="{% url 'home:car-list' %}" class="section-btn btn btn-default">Poznaj ofretę</a>
                                    </div>
                               </div>
                          </div>
@@ -74,7 +75,7 @@
                               <div class="courses-thumb courses-thumb-secondary">
                                    <div class="courses-top">
                                         <div class="courses-image">
-                                             <img src="{% static 'home/images/AutoI.png' %}" class="img-responsive" alt="">
+                                             <img src="{% static 'home/images/product-2-720x480.jpg' %}" class="img-responsive" alt="">
                                         </div>
                                         <div class="courses-date">
                                              <span title="Author"><i class="fa fa-dashboard"></i>21 400km</span>
@@ -233,90 +234,7 @@
                          </div>
                     </div>
                </div>
-          </section>
-          
-          <section>
-               <div class="container">
-                    <div class="row">
-                         <div class="col-md-12 col-sm-12">
-                              <div class="section-title text-center">
-                                   <h2>Latest Blog posts <small>Lorem ipsum dolor sit amet.</small></h2>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="{% static 'home/images/blog-1-720x480.jpg' %}" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                             <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                             <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                                        </div>
-                                   </div>
-
-                                   <div class="courses-detail">
-                                        <h3><a href="blog-post-details.html">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h3>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="{% static 'home/images/blog-2-720x480.jpg' %}" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                             <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                             <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                                        </div>
-                                   </div>
-
-                                   <div class="courses-detail">
-                                        <h3><a href="blog-post-details.html">Tempora molestiae, iste, consequatur unde sint praesentium!</a></h3>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="{% static 'home/images/blog-3-720x480.jpg' %}" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                             <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                             <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                                        </div>
-                                   </div>
-
-                                   <div class="courses-detail">
-                                        <h3><a href="blog-post-details.html">A voluptas ratione, error provident distinctio, eaque id officia?</a></h3>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-          </section>
-
-          
+          </section>          
 
           <section id="testimonial">
                <div class="container">
@@ -324,86 +242,27 @@
 
                          <div class="col-md-12 col-sm-12">
                               <div class="section-title text-center">
-                                   <h2>Referencje<small>z całego Świata</small></h2>
+                                   <h2>OPINIE KLIENTÓW<small>którzy skorzystali z naszych usług </small></h2>
                               </div>
 
                               <div class="owl-carousel owl-theme owl-client">
-                                   <div class="col-md-4 col-sm-4">
-                                        <div class="item">
-                                             <div class="tst-image">
-                                                  <img src="{% static 'home/images/tst-image-1-200x216.jpg' %}" class="img-responsive" alt="">
+                                   {% for opinion in opinion %}
+                                        <div class="col-md-4 col-sm-4">
+                                             <div class="item">
+                                                  <div class="tst-author">
+                                                       <h4>{{ opinion.client_name }}</h4>
+                                                       <div class="tst-rating">
+                                                            {% for i in ""|center:opinion.client_score %}
+                                                                 <i class="fa fa-star"></i>
+                                                            {% endfor %}
+                                                       </div>
+                                                  </div>
+                                                  <p>{{ opinion.client_opinion }}</p>
                                              </div>
-                                             <div class="tst-author">
-                                                  <h4>Jackson</h4>
-                                                  <span>Shopify Developer</span>
-                                             </div>
-                                             <p>Jako Shopify Developer, jestem bardzo zadowolony z fachowej i profesjonalnej obsługi, jakiej doświadczyłem w tym komisie samochodowym. Widząc, jakie innowacyjne i zaawansowane technologicznie narzędzia wykorzystują w swojej pracy, jestem pewien, że są one w stanie zapewnić swoim klientom najlepsze możliwe doświadczenie podczas zakupu samochodu. Polecam ten komis każdemu, kto szuka wysokiej jakości samochodów i profesjonalnej obsługi.</p>
-                                             <div class="tst-rating">
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                             </div>
-                                        </div>
-                                   </div>
-
-                                   <div class="col-md-4 col-sm-4">
-                                        <div class="item">
-                                             <div class="tst-image">
-                                                  <img src="{% static 'home/images/tst-image-2-200x216.jpg' %}" class="img-responsive" alt="">
-                                             </div>
-                                             <div class="tst-author">
-                                                  <h4>Camila</h4>
-                                                  <span>Marketing Manager</span>
-                                             </div>
-                                             <p>Jako Marketing Manager z wieloletnim doświadczeniem, muszę powiedzieć, że współpraca z tym komisem samochodowym była dla mnie przyjemnością. Ich profesjonalizm, zaangażowanie i znajomość branży samochodowej były wyjątkowe. Dzięki ich pomocy, nasza kampania marketingowa zyskała na skuteczności, a nasza firma była w stanie przyciągnąć nowych klientów i zwiększyć sprzedaż. W moim doświadczeniu, rzadko spotyka się tak wysoki poziom obsługi klienta i jakości usług w branży samochodowej. Polecam ten komis każdemu, kto szuka nie tylko dobrych samochodów, ale także profesjonalnej i skutecznej obsługi klienta.</p>
-                                             <div class="tst-rating">
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                             </div>
-                                        </div>
-                                   </div>
-
-                                   <div class="col-md-4 col-sm-4">
-                                        <div class="item">
-                                             <div class="tst-image">
-                                                  <img src="{% static 'home/images/tst-image-3-200x216.jpg' %}" class="img-responsive" alt="">
-                                             </div>
-                                             <div class="tst-author">
-                                                  <h4>Barbie</h4>
-                                                  <span>Art Director</span>
-                                             </div>
-                                             <p>Jako Art Director, jestem bardzo wymagająca pod względem estetyki i jakości wykonania. Dlatego, kiedy poszukiwałem samochodu, musiałem znaleźć komis samochodowy, który oferuje samochody, które spełniają moje wymagania. Ten komis samochodowy spełnił moje oczekiwania - oferując piękne samochody o wysokiej jakości, które zostały doskonale zaprojektowane i wykonane.</p>
-                                             <div class="tst-rating">
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                             </div>
-                                        </div>
-                                   </div>
-
-                                   <div class="col-md-4 col-sm-4">
-                                        <div class="item">
-                                             <div class="tst-image">
-                                                  <img src="{% static 'home/images/tst-image-4-200x216.jpg' %}" class="img-responsive" alt="">
-                                             </div>
-                                             <div class="tst-author">
-                                                  <h4>Andrio</h4>
-                                                  <span>Web Developer</span>
-                                             </div>
-                                             <p>Zakup samochodu w tym komisie samochodowym był łatwy i intuicyjny dzięki ich przejrzystej stronie internetowej. Jako Web Developer, jestem zawsze zainteresowany dobrym designem i łatwością w obsłudze, a strona internetowa tego komisu spełniła moje oczekiwania. Polecam ten komis samochodowy każdemu, kto szuka łatwego i wygodnego sposobu na zakup samochodu.</p>
-                                             <div class="tst-rating">
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star"></i>
-                                             </div>
-                                        </div>
-                                   </div>
-
+                                        </div> 
+                                   {% endfor %}
+                                   
+                                    
                               </div>
                         </div>
                     </div>
@@ -446,4 +305,4 @@
           </div>
      </section>       
 
-{% include 'footer.html' %}
+{% endblock %}

@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Clients, Orders, Contact, Car
+from admin_panel.models import *
 from django.forms.widgets import NumberInput
 from django.contrib.admin.widgets import AdminDateWidget
 
@@ -109,4 +110,25 @@ class CarForm(ModelForm):
             'price': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Cena'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Opis'}),
             'image': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Zdjęcie'}),
+        }
+
+class ClientOpinionForm(ModelForm):
+    class Meta:
+        model = client_opinion
+        fields = ('client_name', 'client_mail', 'client_score', 'client_opinion', 'rodo')
+
+        labels = {
+            'client_name' : '', 
+            'client_mail' : '', 
+            'client_score' : '', 
+            'client_opinion' : '', 
+            'rodo' : '',
+        }
+
+        widgets = {
+            'client_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Imię i nazwisko'}),
+            'client_mail': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Adres email'}),
+            'client_score': forms.Select(attrs={'class':'form-control', 'placeholder':'Ocena'}),
+            'client_opinion': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Opinia'}),
+            'rodo': forms.CheckboxInput(attrs={'class':'form-check-input', 'label':'Akceptuję warunki RODO'}),
         }

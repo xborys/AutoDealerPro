@@ -1,11 +1,14 @@
-{% load static %}
-{% include 'head.html' %}
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block title_v2 %}{% endblock %}
 
 {% block content %}
-
+    
 <div class='container'>
 
-    <h1>Edytuj dane transakcji:</h1>
+    <h1>Edytuj samochód:</h1>
         <form action="" method=POST>
             {% csrf_token %}
             {{ form.as_p }}
@@ -13,8 +16,6 @@
             <input type="submit" value="Akceptuj" class="btn btn-secondary">
         </form> 
         <br>
-</div>
-
+</div>    
+    
 {% endblock %}
-
-{% include 'footer.html' %}

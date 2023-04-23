@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block title_v2 %}  {% endblock %}
+
+{% block content %}
+
+{% if transaction %}
+    
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Lista transakcji
+            <a href="{% url 'admin_panel:add-transaction' %}" class="btn btn-primary btn-icon-split btn-sm float-right">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Dodaj transakcję</span>
+            </a>
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Imie nazwisko /<br>Nazwa firmy</th>
+                        <th>Samochoód</th>
+                        <th>Data</th>
+                        <th>Cena</th>
+                        <th>Czy zapłacone</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transaction %}
+                        <tr>
+                            <td>{{ transaction.client }}</td>
+                            <td>{{ transaction.car}}</td>
+                            <td>{{ transaction.date}}</td>
+                            <td>{{ transaction.price}} PLN</td>
+                            <td>
+                                {% if transaction.is_paid == True %}
+                                    <span class="badge badge-success">Tak</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Nie</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% else %}
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Nie znaleziono zadnych transakcji</h4>
+        <p>Nie znalezionow zadnych transakcji w bazie danych</p>
+        <hr>
+        <p class="mb-0">Spróbuj ponownie później</p>
+    </div>
+{% endif %}
+    
+{% endblock %}

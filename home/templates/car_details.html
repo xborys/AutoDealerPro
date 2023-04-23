@@ -1,0 +1,197 @@
+{% extends 'head.html' %}
+{% load static %}
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row">
+             <div class="col-md-6 col-xs-12">
+                  <div>
+                        {% if car.image %}
+                            <img src="{{car.image.url}}" alt="" class="img-responsive wc-image">
+                        {% else %}
+                            <div class="no-image-icon">
+                                <i class="fa fa-car"></i>
+                            </div>
+                        {% endif %}
+                  </div>
+
+                  <br>
+
+                  <div class="row">
+                       <div class="col-sm-4 col-xs-6">
+                            <div>
+                                 <img src="images/product-1-720x480.jpg" alt="" class="img-responsive">
+                            </div>
+                            
+                            <br>
+                       </div>
+
+                       <div class="col-sm-4 col-xs-6">
+                            <div>
+                                 <img src="images/product-2-720x480.jpg" alt="" class="img-responsive">
+                            </div>
+                            
+                            <br>
+                       </div>
+
+                       <div class="col-sm-4 col-xs-6">
+                            <div>
+                                 <img src="images/product-3-720x480.jpg" alt="" class="img-responsive">
+                            </div>
+
+                            <br>
+                       </div>
+                  </div>
+             </div>
+
+             <div class="col-md-6 col-xs-12">
+                  <form action="#" method="post" class="form">
+                       <h2>{{car.make}} {{car.model}}</h2>
+
+                       <p class="lead"><strong class="text-primary">{{car.price}} PLN</strong></p>
+
+                       <div class="row">
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span>Rodzaj auta:</span>
+
+                                      <br>
+
+                                      <strong>{{car.type}}</strong>
+                                 </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span> Marka </span>
+
+                                      <br>
+
+                                      <strong>{{car.make}}</strong>
+                                 </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span> Model</span>
+
+                                      <br>
+
+                                      <strong>{{car.model}}</strong>
+                                 </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span>Rok produkcji</span>
+
+                                      <br>
+
+                                      <strong>{{car.year}}</strong>
+                                 </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span>Przebieg</span>
+
+                                      <br>
+
+                                      <strong>{{car.mileage}} km</strong>
+                                 </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span>Paliwo</span>
+
+                                      <br>
+
+                                      <strong>{{car.fuel_type}}</strong>
+                                 </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span>Pojemność silnika</span>
+
+                                      <br>
+
+                                      <strong>{{car.engine_capacity}} cm<sup>3</sup></strong>
+                                 </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span>Moc</span>
+
+                                      <br>
+
+                                      <strong>{{car.engine_power}} KM</strong>
+                                 </p>
+                            </div>
+
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span>Skrzynia biegów</span>
+
+                                      <br>
+
+                                      <strong>{{car.gear}}</strong>
+                                 </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span>Liczba miejsc</span>
+
+                                      <br>
+
+                                      <strong>{{car.seats}}</strong>
+                                 </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span>Liczba drzwi</span>
+
+                                      <br>
+
+                                      <strong>2/3</strong>
+                                 </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                 <p>
+                                      <span>Kolor</span>
+
+                                      <br>
+
+                                      <strong>{{car.color}}</strong>
+                                 </p>
+                            </div>
+                       </div>
+                  </form>
+             </div>
+        </div>
+
+        <div class="row">
+             <div class="col-lg-8 col-xs-12">
+                  <div class="panel panel-default">
+                       <div class="panel-heading">
+                            <h4>OPIS</h4>
+                       </div>
+
+                       <div class="panel-body">
+                            <p>{{car.description}}</p>
+                        </div>
+                  </div>
+             </div>
+
+        </div>
+   </div>
+</section>
+     
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block title_v2 %} {% endblock %}
+
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Dodaj transakcje</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            {% if submitted %}
+
+            {% else %}
+                
+                <form action="" method=POST>
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <input type='submit' value='Dodaj' class='btn btn-secondary'>
+                </form>
+
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

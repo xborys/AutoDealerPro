@@ -25,7 +25,64 @@ class yes_no(models.Model):
         return self.yes_no
 
 class Car(models.Model):
-    make = models.ForeignKey(vehicle_make, on_delete=models.CASCADE)
+    car_make = [
+        ('Audi', 'Audi'),
+        ('BMW', 'BMW'),
+        ('Ford', 'Ford'),
+        ('Honda', 'Honda'),
+        ('Hyundai', 'Hyundai'),
+        ('Kia', 'Kia'),
+        ('Mazda', 'Mazda'),
+        ('Mercedes-Benz', 'Mercedes-Benz'),
+        ('Nissan', 'Nissan'),
+        ('Opel', 'Opel'),
+        ('Renault', 'Renault'),
+        ('Skoda', 'Skoda'),
+        ('Toyota', 'Toyota'),
+        ('Tesla', 'Tesla'),
+        ('Volkswagen', 'Volkswagen'),
+    ]
+
+    fuel_type = [
+        ('benzyna', 'Benzyna'),
+        ('diesel', 'Diesel'),
+        ('hybryda', 'Hybryda'),
+        ('elektryczny', 'Elektryczny'),
+        ('lpg', 'LPG'),
+    ]
+
+    gear_type = [
+        ('Manualna', 'Manualna'),
+        ('Automatyczna', 'Automatyczna'),
+    ]
+
+    type = [
+        ('Używane', 'Używane'),
+        ('Nowe', 'Nowe'),
+    ]
+
+    color = [
+        ('Biały', 'Biały'),
+        ('Szary', 'Szary'),
+        ('Czarny', 'Czarny'),
+        ('Srebrny', 'Srebrny'),
+        ('Niebieski', 'Niebieski'),
+        ('Czerwony', 'Czerwony'),
+        ('Zielony', 'Zielony'),
+        ('Żółty', 'Żółty'),
+        ('Brązowy', 'Brązowy'),
+        ('Inny', 'Inny')
+    ]
+
+    seats = [
+        ('2', '2'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7 lub wiecej', '7 lub wiecej'),
+    ]   
+
+    make = models.CharField('Marka', max_length=50, choices=car_make)
     model = models.CharField('Model', max_length=50)
     vin = models.CharField('VIN', max_length=17)
     year = models.IntegerField('Rok produkcji')
@@ -34,8 +91,11 @@ class Car(models.Model):
     description = models.TextField('Opis')
     engine_capacity = models.IntegerField('Pojemność silnika (cm3)')
     engine_power = models.IntegerField('Moc silnika (KM)')
-    fuel_type = models.ForeignKey(CarFuelType, on_delete=models.CASCADE)
-    gear = models.ForeignKey(CarGear, on_delete=models.CASCADE)
+    fuel_type = models.CharField('Rodzaj paliwa', max_length=50, choices=fuel_type)
+    gear = models.CharField('Skrzynia biegów', max_length=50, choices=gear_type)
+    type = models.CharField('Typ', max_length=50, choices=type)
+    color = models.CharField('Kolor', max_length=50, choices=color)
+    seats = models.CharField('Liczba miejsc', max_length=50, choices=seats)
     image = models.ImageField('Zdjęcia', upload_to='images/',blank=True, null=True)
 
     def __str__(self):
@@ -96,3 +156,23 @@ class Contact(models.Model):
     
     def __str__(self):
         return self.name
+
+class client_opinion(models.Model):
+    SCORE_CHOICES = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+    ]
+
+    client_name = models.CharField(max_length=100)
+    client_mail = models.EmailField(max_length=100)
+    client_score = models.CharField(choices=SCORE_CHOICES, max_length=1)
+    client_opinion = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    rodo = models.BooleanField()
+    read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.client_name

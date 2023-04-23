@@ -1,0 +1,26 @@
+{% extends 'head.html' %}
+{% load static %}
+{% block content %}
+
+<section>
+    <div class="container">
+        {% if submitted %}
+
+                Dodano samochoód!
+
+            {% else %}
+                
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  
+                </div>
+                {{ form.as_p }}
+                <input type='submit' value='Dodaj' class='btn btn-secondary'>
+            </form>
+
+            {% endif %}
+    </div>
+</section>
+     
+{% endblock %}

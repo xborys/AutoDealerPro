@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %} Klient - {{client}} {% endblock %}
+
+{% block title_v2 %}{% endblock %}
+
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold text-primary">
+            {{ client.name }}
+        </h4>
+        {% if client.pesel == None %}
+            <h6>NIP: {{client.nip}}</h6>
+        {% else %}
+            <h6>PESEL: {{client.pesel}}</h6>
+        {% endif %}
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <h6>Adres: {{client.adress}}</h6>
+            <h6>Miasto: {{client.zip}} {{client.city}}</h6>
+            <h6>Telefon: {{client.phone}}</h6>
+            <h6>e-mail: {{client.email}}</h6>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4" id="accordion" role="tablist" aria-multiselectable="true">               
+    <div class="panel panel-default">
+        <div class="card-header py-3" role="tab" id="heading0">
+            <h4 class="m-0 font-weight-bold text-primary">
+                <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                    Zakupione samochody
+                </a>
+            </h4>
+        </div>
+        <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+            <div class="panel-body px-3 mb-4">
+                <div class="panel-body px-3 mb-4">
+                    {% if has_transactions %}
+                        <p>Transactions:</p>
+                        <ul>
+                        {% for transaction in transactions %}
+                            <li>{{ transaction }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No transactions found.</p>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+{% endblock %}

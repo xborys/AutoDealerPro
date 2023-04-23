@@ -4,10 +4,35 @@
 
 {% block content %}
     
+{% if messages %}
+    {% for message in messages %}
+        {% if 'success' in message.tags %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </div>
+        {% elif 'error' in message.tags %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Lista samochodów</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Lista samochodów
+                <a href="{% url 'admin_panel:add-car' %}" class="btn btn-primary btn-icon-split btn-sm float-right">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Dodaj samochód</span>
+                </a>
+            </h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -21,19 +46,9 @@
                             <th>Paliwo</th>
                             <th>Moc</th>
                             <th>Cena</th>
+                            <th></th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Marka</th>
-                            <th>Model</th>
-                            <th>Rok produkcji</th>
-                            <th>Przebieg</th>
-                            <th>Paliwo</th>
-                            <th>Moc</th>
-                            <th>Cena</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         {% for car in car_list %}
                             <tr>
@@ -44,6 +59,18 @@
                                 <td>{{ car.fuel_type}}</td>
                                 <td>{{ car.engine_power}} KM</td>
                                 <td>{{ car.price }} PLN</td>
+                                <td>
+                                    <a href="{% url 'admin_panel:edit-car' car.id %}" class="btn btn-primary btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="btn btn-danger btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                    </a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

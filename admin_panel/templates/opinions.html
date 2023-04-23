@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %} Opinie {% endblock %}
+
+{% block title_v2 %} Lista wystawionych opini {% endblock %}
+
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            {% if opinion %}
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Imie, nazwisko</th>
+                            <th>email</th>
+                            <th>Ocena</th>
+                            <th>Data</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for opinions in opinion %}
+                        <tr>
+                            <td></td>
+                            <td>{{ opinions.client_name }}</td>
+                            <td>{{ opinions.client_mail }}</td>
+                            <td>{{ opinions.client_score }}</td>
+                            <td>{{ opinions.date|date:"d F Y, H:i" }}</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-squere btn-sm" data-toggle="modal" data-target="#deleteModal{{ opinions.id }}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteModal{{ opinions.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ opinions.id }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel{{ opinions.id }}">Potwierdzenie usunięcia opinii</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Czy na pewno chcesz usunąć tę opinię {{ opinions.client_name }}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                                        <a href="{% url 'admin_panel:del-opinion' opinions.id %}" class="btn btn-danger">Usuń</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h3>Brak opinii</h3>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
