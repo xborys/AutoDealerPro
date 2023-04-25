@@ -39,6 +39,12 @@ def add_car(request):
     return render(request, 'Add_Car.html', {'form':form, 'submitted':submitted})
 
 @login_required
+def del_car(request, car_id):
+    car = get_object_or_404(Car, id=car_id)
+    car.delete()
+    return redirect('admin_panel:cars')
+
+@login_required
 def edit_car(request, car_id):
     submitted = False
     car = Car.objects.get(pk=car_id)

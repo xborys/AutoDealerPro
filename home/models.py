@@ -80,7 +80,12 @@ class Car(models.Model):
         ('5', '5'),
         ('6', '6'),
         ('7 lub wiecej', '7 lub wiecej'),
-    ]   
+    ]
+
+    doors = [
+        ('2/3', '2/3'),
+        ('4/5', '4/5'),
+    ]
 
     make = models.CharField('Marka', max_length=50, choices=car_make)
     model = models.CharField('Model', max_length=50)
@@ -96,6 +101,8 @@ class Car(models.Model):
     type = models.CharField('Typ', max_length=50, choices=type)
     color = models.CharField('Kolor', max_length=50, choices=color)
     seats = models.CharField('Liczba miejsc', max_length=50, choices=seats)
+    doors = models.CharField('Liczba drzwi', max_length=50, choices=doors)
+    availability = models.BooleanField('Dostępność', default=False)
     image = models.ImageField('Zdjęcia', upload_to='images/',blank=True, null=True)
 
     def __str__(self):

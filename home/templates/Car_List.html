@@ -6,7 +6,7 @@
 <div class="container">
 <br/>
     {% for car in car_list %}
-
+        {% if car.availability == True %}
         <div class="col-md-4 col-sm-4">
             <div class="courses-thumb courses-thumb-secondary">
                 <div class="courses-top">
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-
+        {% endif %}
     {% endfor %}
 </div>
 </section>

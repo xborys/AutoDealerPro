@@ -39,6 +39,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Marka</th>
                             <th>Model</th>
                             <th>Rok produkcji</th>
@@ -52,6 +53,13 @@
                     <tbody>
                         {% for car in car_list %}
                             <tr>
+                                <td>
+                                    {% if car.availability %}
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    {% else %}
+                                        <i class="fas fa-times-circle text-danger"></i>
+                                    {% endif %}
+                                </td>
                                 <td>{{ car.make }}</td>
                                 <td>{{ car.model}}</td>
                                 <td>{{ car.year}}</td>
@@ -65,13 +73,32 @@
                                             <i class="fas fa-edit"></i>
                                         </span>
                                     </a>
-                                    <a href="#" class="btn btn-danger btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
+                                    <a href="#" class="btn btn-danger btn-squere btn-sm" data-toggle="modal" data-target="#deleteModal{{ car.id }}">
+                                        <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModal{{ car.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ car.id }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel{{ car.id }}">Potwierdzenie usunięcia samochodu</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Czy na pewno chcesz {{car.make}} {{car.model}}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                                            <a href="{% url 'admin_panel:del-car' car.id %}" class="btn btn-danger">Usuń</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         {% endfor %}
                     </tbody>
                 </table>

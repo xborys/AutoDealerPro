@@ -80,21 +80,26 @@ class ContactForm(ModelForm):
 class CarForm(ModelForm):
     class Meta:
         model = Car
-        fields = ('make', 'model', 'vin', 'year', 'price', 'mileage', 'description', 'engine_capacity', 'engine_power', 'fuel_type', 'gear', 'image')
+        fields = ('make', 'model', 'vin', 'year', 'price', 'mileage', 'description', 'engine_capacity', 'engine_power', 'fuel_type', 'gear', 'type', 'color', 'seats', 'doors', 'availability', 'image')
 
         labels = {
-            'make': '',
-            'model': '',
-            'year': '',
-            'mileage': '',
-            'engine_capacity': '',
-            'engine_power': '',
-            'fuel_type': '',
-            'gear': '',
-            'vin': '',
-            'price': '',
-            'description': '',
-            'image': '',
+            'make': 'Marka',
+            'model': 'Model',
+            'year': 'Rok produkcji',
+            'mileage': 'Przebieg',
+            'engine_capacity': 'Pojemność silnika',
+            'engine_power': 'Moc silnika',
+            'fuel_type': 'Rodzaj paliwa',
+            'gear': 'Rodzaj skrzyni biegów',
+            'type': 'Typ', 
+            'color': 'Kolor', 
+            'seats': 'Liczba miejsc', 
+            'doors': 'Liczba drzwi',
+            'vin': 'VIN',
+            'price': 'Cena',
+            'description': 'Opis',
+            'availability': 'Czy wyświetlać na stronie?',
+            'image': 'Zdjęcie',
         }
 
         widgets = {
@@ -106,9 +111,14 @@ class CarForm(ModelForm):
             'engine_power': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Moc silnika', 'required': True}),
             'fuel_type': forms.Select(attrs={'class':'form-control', 'placeholder':'Rodzaj paliwa', 'required': True}),
             'gear': forms.Select(attrs={'class':'form-control', 'placeholder':'Skrzynia biegów', 'required': True}),
+            'type': forms.Select(attrs={'class':'form-control', 'placeholder':'Typ nadwozia', 'required': True}),
+            'color': forms.Select(attrs={'class':'form-control', 'placeholder':'Kolor', 'required': True}),
+            'seats': forms.Select(attrs={'class':'form-control', 'placeholder':'Liczba miejsc', 'required': True}),
+            'doors': forms.Select(attrs={'class':'form-control', 'placeholder':'Liczba drzwi', 'required': True}),
             'vin': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Numer VIN', 'required': True}),
             'price': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Cena', 'required': True}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Opis', 'required': True}),
+            'availability': forms.CheckboxInput(attrs={'placeholder':'Dostępność', 'required': True}),
             'image': forms.FileInput(attrs={'class':'form-control'}),
         }
 
