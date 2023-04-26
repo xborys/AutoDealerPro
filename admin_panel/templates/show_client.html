@@ -40,14 +40,18 @@
             <div class="panel-body px-3 mb-4">
                 <div class="panel-body px-3 mb-4">
                     {% if has_transactions %}
-                        <p>Transactions:</p>
+                        <br><p>Zakupione samochody:</p>
                         <ul>
                         {% for transaction in transactions %}
-                            <li>{{ transaction }}</li>
+                            <li>
+                                <a href="{% url 'admin_panel:show-transaction' transaction.id %}">
+                                    {{ transaction.car }}
+                                </a>
+                            </li>
                         {% endfor %}
                         </ul>
                     {% else %}
-                        <p>No transactions found.</p>
+                        <br><p>Brak zakupionych samochodów</p>
                     {% endif %}
 
 

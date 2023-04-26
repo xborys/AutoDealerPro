@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %} transakcja #{{transaction.id}} {% endblock %}
+
+{% block title_v2 %}{% endblock %}
+
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold text-primary">
+            Szczegóły transakcji:
+        </h4>
+        
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <h6>Data transakcji: {{transaction.date}}</h6>
+            <br>
+            <h6>Kwota: {{transaction.price}} PLN</h6>
+            <h6>Kwota z ogłoszenia: {{car.price}} PLN</h6>
+            <br>
+            <h6>
+                Czy zapłacone:
+                {% if transaction.is_paid %}
+                    Tak
+                {% else %}
+                    Nie
+                {% endif %}
+            </h6>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold text-primary">
+            <a href="{% url 'admin_panel:show-client' client.id %}">Dane klienta:</a>
+        </h4>
+        
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            {% if client.pesel %}
+                <h6>Imie nazwisko:
+                    {{client.name}}
+                </h6>
+                <h6>Pesel:
+                    {{client.pesel}}
+                </h6>
+            {% else %}
+                <h6>
+                    Nazwa firmy:
+                    {{client.name}}
+                </h6>
+                <h6>
+                    NIP:
+                    {{client.nip}}
+                </h6>
+            {% endif %}
+            <h6>
+                Adres:
+                <br>
+                {{client.adress}}
+                <br>
+                {{client.zip}} {{client.city}}
+            </h6>
+            <h6>
+                Telefon:
+                {{client.phone}}
+                <br>
+                Email:
+                {{client.email}}
+            </h6>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold text-primary">
+            <a href="{% url 'admin_panel:show-car' car.id %}">Dane samochodu:</a>
+        </h4>
+        
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <h6>Marka: {{car.make}}</h6>
+            <h6>Model: {{car.model}}</h6>
+            <h6>VIN: {{car.vin}}</h6>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

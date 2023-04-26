@@ -35,31 +35,6 @@ class ClientsForm(ModelForm):
             'email': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Adres email'}),
         }
 
-date = [2022, 2023, 2024]
-
-class OrderForm(ModelForm):
-    class Meta:
-        model = Orders
-        fields = ('client', 'car', 'employee', 'order_date', 'order_price', 'order_status')
-
-        labels ={
-            'client': 'Kupujący',
-            'car': 'Samochód',
-            'employee': 'Sprzedawca',
-            'order_date': 'Data ',
-            'order_price': 'Data transakcji',
-            'order_status': '',
-        }
-
-        widgets = {
-            'client': forms.Select(attrs={'class':'form-control'}),
-            'car': forms.Select(attrs={'class':'form-control'}),
-            'employee': forms.Select(attrs={'class':'form-control'}),
-            'order_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'order_price': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Kwota transakcji'}),
-            'order_status': forms.Select(attrs={'class':'form-control'}),
-        }
-
 class ContactForm(ModelForm):
     class Meta:
         model = Contact

@@ -41,7 +41,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th><a href="?order_by=name{% if order_by == 'name' %}&desc=True{% endif %}">Imię i nazwisko klienta <br>/ Nazwa firmy</a></th>
+                            <th><a href="?order_by=name{% if order_by == 'name' %}&desc=True{% endif %}">Imię i nazwisko<br>/ Nazwa firmy</a></th>
                             <th><a href="?order_by=pesel{% if order_by == 'pesel' %}&desc=True{% endif %}">PESEL</a></th>
                             <th><a href="?order_by=nip{% if order_by == 'nip' %}&desc=True{% endif %}">NIP</a></th>
                             <th><a href="?order_by=adress{% if order_by == 'adress' %}&desc=True{% endif %}">Adres</a></th>
@@ -54,7 +54,7 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Imię i nazwisko klienta <br>/ Nazwa firmy</th>
+                            <th>Imię i nazwisko<br>/ Nazwa firmy</th>
                             <th>PESEL</th>
                             <th>NIP</th>
                             <th>Adres</th>
@@ -86,6 +86,11 @@
                                 <td>{{clients.email}}</td>
                                 <td>
                                     <a href="{% url 'admin_panel:show-client' clients.id %}" class="btn btn-primary btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-eye"></i>
+                                        </span>
+                                    </a>
+                                    <a href="{% url 'admin_panel:edit-client' clients.id %}" class="btn btn-primary btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-edit"></i>
                                         </span>

@@ -39,6 +39,12 @@ def add_car(request):
     return render(request, 'Add_Car.html', {'form':form, 'submitted':submitted})
 
 @login_required
+def show_car(request, car_id):
+    car = get_object_or_404(Car, pk=car_id)
+    
+    return render(request, 'show_car.html', {'car': car})
+
+@login_required
 def del_car(request, car_id):
     car = get_object_or_404(Car, id=car_id)
     car.delete()
@@ -82,8 +88,6 @@ def show_client(request, client_id):
     
     return render(request, 'show_client.html', context)
 
-
-
 @login_required
 def add_client(request):
     submitted = False
@@ -100,6 +104,23 @@ def add_client(request):
             submitted = True
 
     return render(request, 'Add_Client.html', {'form':form, 'submitted':submitted})
+
+@login_required
+def edit_client(request, client_id):
+    submitted = False
+    client = Clients.objects.get(pk=client_id)
+    if request.method == 'POST':
+        form = ClientsForm(request.POST, instance=client)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Klient został edytowany.')
+            return HttpResponseRedirect(reverse('admin_panel:clients') + '?submitted=True')
+    else:
+        form = ClientsForm(instance=client)
+        if "submitted" in request.GET:
+            submitted = True
+
+    return render(request, 'Edit_Client.html', {'form':form, 'submitted':submitted})
 
 @login_required
 def del_client(request, client_id):
@@ -136,8 +157,33 @@ def transaction(request):
                   {'transaction' : transaction})
 
 @login_required
-def add_transaction(request):
-    transaction = Transaction.objects.all()
+def show_transaction(request, transaction_id):
+    transaction = get_object_or_404(Transaction, pk=transaction_id)
+    client = transaction.client
+    car = transaction.car
+    
+    context = {
+        'transaction': transaction,
+        'client': client,
+        'car': car,
+    }
 
-    return render(request, 'add_transaction.html',
-                    {'transaction' : transaction})
+    return render(request, 'show_transaction.html', context)
+
+
+@login_required
+def add_transaction(request):
+    submitted = False
+    
+    if request.method == 'POST':
+        form = TransactionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Transakcja została dodana.')
+            return HttpResponseRedirect(reverse('admin_panel:transaction') + '?submitted=True')
+    else:
+        form = TransactionForm
+        if "submitted" in request.GET:
+            submitted = True
+
+    return render(request, 'add_transaction.html', {'form':form, 'submitted':submitted})

@@ -68,6 +68,11 @@
                                 <td>{{ car.engine_power}} KM</td>
                                 <td>{{ car.price }} PLN</td>
                                 <td>
+                                    <a href="{% url 'admin_panel:show-car' car.id %}" class="btn btn-primary btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-eye"></i>
+                                        </span>
+                                    </a>
                                     <a href="{% url 'admin_panel:edit-car' car.id %}" class="btn btn-primary btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-edit"></i>

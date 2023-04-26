@@ -1,4 +1,6 @@
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 class CarFuelType(models.Model):
     fuel_type = models.CharField('Rodzaj paliwa', max_length=50)
@@ -23,6 +25,8 @@ class yes_no(models.Model):
 
     def __str__(self):
         return self.yes_no
+
+
 
 class Car(models.Model):
     car_make = [

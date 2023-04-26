@@ -138,6 +138,6 @@ class TransactionForm(ModelForm):
             'client': forms.Select(attrs={'class':'form-control'}),
             'car': forms.Select(attrs={'class':'form-control'}),
             'price': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Kwota transakcji'}),
-            'is_paid': forms.Select(attrs={'class':'form-control'}),
+            'is_paid': forms.CheckboxInput(attrs={}),
         }
 
