@@ -17,32 +17,6 @@
                   </div>
 
                   <br>
-
-                  <div class="row">
-                       <div class="col-sm-4 col-xs-6">
-                            <div>
-                                 <img src="images/product-1-720x480.jpg" alt="" class="img-responsive">
-                            </div>
-                            
-                            <br>
-                       </div>
-
-                       <div class="col-sm-4 col-xs-6">
-                            <div>
-                                 <img src="images/product-2-720x480.jpg" alt="" class="img-responsive">
-                            </div>
-                            
-                            <br>
-                       </div>
-
-                       <div class="col-sm-4 col-xs-6">
-                            <div>
-                                 <img src="images/product-3-720x480.jpg" alt="" class="img-responsive">
-                            </div>
-
-                            <br>
-                       </div>
-                  </div>
              </div>
 
              <div class="col-md-6 col-xs-12">
@@ -154,20 +128,75 @@
         </div>
 
         <div class="row">
-             <div class="col-lg-8 col-xs-12">
-                  <div class="panel panel-default">
-                       <div class="panel-heading">
-                            <h4>OPIS</h4>
-                       </div>
+               <div class="col-lg-8 col-xs-12">
+                    <div class="panel panel-default">
+                         <div class="panel-heading">
+                              <h4>OPIS</h4>
+                         </div>
 
-                       <div class="panel-body">
-                            <p>{{car.description}}</p>
-                        </div>
-                  </div>
-             </div>
+                         <div class="panel-body">
+                              <p>{{car.description}}</p>
+                         </div>
+                    </div>
+               </div>
+               <div class="col-lg-4 col-xs-12">
+                    <div class="panel panel-default">
+                         <div class="panel-heading">
+                            <h4>KALKULATOR KREDYTOWY</h4>
+                         </div>
+                
+                         <div class="panel-body">
+                              <label for="price">Chcę pożyczyć: <span id="priceValue">{{car.price}}</span> PLN</label>
+                              <input type="range" id="price" name="price" min="0" max="{{car.price}}" value="{{car.price}}" class="slider">
+                
+                              <label for="installments">Liczba rat: <span id="installmentsValue">24</span></label>
+                              <input type="range" id="installments" name="installments" min="3" max="60" value="24" class="slider">
+                
+                              <br>
+                
+                              <p>RRSO: <strong id="rrso">34</strong>%</p>
+                              <p>Kwota raty: <strong id="installmentAmount">---</strong> PLN</p>
 
-        </div>
-   </div>
+                              <p><small><small> Ten kalkulator jest tylko przykładem i rzeczywisty koszt kredytu może być inny. Skonsultuj się z doradcą finansowym lub bankiem, aby uzyskać dokładne informacje.</small></small></p>
+       
+                         </div>
+                    </div>
+                </div>
+                
+                
+                
+          </div>   
+     </div>
 </section>
      
+<script>
+     function calculateInstallment() {
+         var price = parseFloat(document.getElementById('price').value);
+         var installments = parseInt(document.getElementById('installments').value);
+         var rrso = 0.34; // RRSO jako wartość stała - 10%
+ 
+         var monthlyInterestRate = rrso / 12;
+         var denominator = Math.pow((1 + monthlyInterestRate), installments) - 1;
+ 
+         var installmentAmount = price * ((monthlyInterestRate * Math.pow((1 + monthlyInterestRate), installments)) / denominator);
+ 
+         document.getElementById('installmentAmount').innerText = installmentAmount.toFixed(2);
+     }
+ 
+     document.getElementById('price').oninput = function() {
+         document.getElementById('priceValue').innerText = this.value;
+         calculateInstallment();
+     }
+ 
+     document.getElementById('installments').oninput = function() {
+         document.getElementById('installmentsValue').innerText = this.value;
+         calculateInstallment();
+     }
+ 
+     // Initial calculation
+     calculateInstallment();
+ </script>
+ 
+ 
+
 {% endblock %}
