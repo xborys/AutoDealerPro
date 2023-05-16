@@ -13,4 +13,5 @@ urlpatterns = [
     path('partner-list', views.partner_list, name='partner-list'),
     path('add-opinion', views.add_opinion, name='add-opinion'),
     path('financing', views.financing, name='financing'),
+    path('compare/', views.compare, name='compare'),
 ]

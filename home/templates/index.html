@@ -62,7 +62,7 @@
                </div>
           </section>
           
-<section>
+          <section>
                <div class="container">
                     <div class="row">
                          <div class="col-md-12 col-sm-12">
@@ -71,169 +71,44 @@
                               </div>
                          </div>
 
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="{% static 'home/images/product-2-720x480.jpg' %}" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-dashboard"></i>21 400km</span>
-                                             <span title="Author"><i class="fa fa-cube"></i>3300cc</span>
-                                             <span title="Views"><i class="fa fa-cog"></i>Automat</span>
-                                        </div>
-                                   </div>
-
-                                   <div class="courses-detail">
-                                        <h3><a href="car-details.html">Kia Stinger</a></h3>
-
-                                        <p class="lead"><small><del> 277.000 zł</del></small> <strong>260.000 zł</strong></p>
-
-                                        <p>370 hp &nbsp;&nbsp;/&nbsp;&nbsp; Benzyna &nbsp;&nbsp;/&nbsp;&nbsp; 2021 &nbsp;&nbsp;/&nbsp;&nbsp;Używany</p>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="{% static 'home/images/product-2-720x480.jpg' %}" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                             <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                             <span title="Views"><i class="fa fa-cog"></i> Manual</span>
+                         {% for car in caronsale %}
+                              {% if car.start_date <= today and today <= car.end_date %}
+                                   <div class="col-md-4 col-sm-4">
+                                        <div class="courses-thumb courses-thumb-secondary">
+                                             <div class="courses-top">
+                                                  <div class="courses-image">
+                                                       <img src="{{car.car.image.url}}" class="img-responsive" alt="">
+                                                  </div>
+                                                  <div class="courses-date">
+                                                       <span title="Author"><i class="fa fa-dashboard"></i> {{car.car.mileage}} km</span>
+                                                       <span title="Author"><i class="fa fa-cube"></i> {{car.car.engine_capacity}} cm<sup>3</sup></span>
+                                                       <span title="Views"><i class="fa fa-cog"></i> {{car.car.gear}}</span>
+                                                  </div>
+                                             </div>
+          
+                                             <div class="courses-detail">
+                                                  <h3><a href="">{{car.car.make}} {{car.car.model}}</a></h3>
+          
+                                                  <p class="lead"><small><del> {{car.car.price}} zł</del></small> <strong>{{car.new_price}} zł</strong></p>
+          
+                                                  <p>{{car.car.engine_power}} KM &nbsp;&nbsp;/&nbsp;&nbsp; {{car.car.fuel_type}} &nbsp;&nbsp;/&nbsp;&nbsp; {{car.car.year}} &nbsp;&nbsp;/&nbsp;&nbsp; {{car.car.type}}</p>
+                                             </div>
+          
+                                             <div class="courses-info">
+                                                  <a href="{% url 'home:car_details' car.car.id %}" class="section-btn btn btn-primary btn-block">Więcej informacji</a>
+                                             </div>
                                         </div>
                                    </div>
+                              {% endif %}
+                         {% endfor %}
 
-                                   <div class="courses-detail">
-                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
-
-                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; New vehicle</p>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="{% static 'home/images/product-3-720x480.jpg' %}" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                             <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                             <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                                        </div>
-                                   </div>
-
-                                   <div class="courses-detail">
-                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
-
-                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; Used vehicle</p>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="{% static 'home/images/product-4-720x480.jpg' %}" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                             <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                             <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                                        </div>
-                                   </div>
-
-                                   <div class="courses-detail">
-                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
-
-                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; Used vehicle</p>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="{% static 'home/images/product-5-720x480.jpg' %}" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                             <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                             <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                                        </div>
-                                   </div>
-
-                                   <div class="courses-detail">
-                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
-
-                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; New vehicle</p>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div class="col-md-4 col-sm-4">
-                              <div class="courses-thumb courses-thumb-secondary">
-                                   <div class="courses-top">
-                                        <div class="courses-image">
-                                             <img src="{% static 'home/images/product-6-720x480.jpg' %}" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                             <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                             <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                             <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                                        </div>
-                                   </div>
-
-                                   <div class="courses-detail">
-                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
-
-                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; New vehicle</p>
-                                   </div>
-
-                                   <div class="courses-info">
-                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                   </div>
-                              </div>
-                         </div>
+                         
+                         
                     </div>
-               </div>
+               </div>   
+
+
+                         
           </section>          
 
           <section id="testimonial">

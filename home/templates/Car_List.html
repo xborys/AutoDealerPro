@@ -37,6 +37,9 @@
                         </div>
                     </div>
                 </div>
+
+                <a id="compare-button" class="btn btn-primary" href="#" disabled>Porównaj samochody</a>
+
             </div>
 
             <div class="col-lg-9 col-xs-12">
@@ -85,9 +88,10 @@
                                         
                                     </p>
                                 </div>
-                
+                                
                                 <div class="courses-info">
                                     <a href="{% url 'home:car_details' car.id %}" class="section-btn btn btn-primary btn-block">Więcej informacji</a>
+                                    <input type="checkbox" class="compare-checkbox" value="{{ car.id }}"> Porównaj
                                 </div>
                             </div>
                         </div>
@@ -95,7 +99,7 @@
                     {% endfor %}
                 </div>
             </div>
-         </div>
+        </div>
     </div>
 </section>
 
@@ -118,5 +122,45 @@
         font-size: 50px;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let compareList = [];
+        const compareCheckboxes = document.querySelectorAll('.compare-checkbox');
+    
+        compareCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                const carId = e.target.value;
+    
+                if (e.target.checked) {
+                    // Dodaj samochód do listy porównania
+                    compareList.push(carId);
+                } else {
+                    // Usuń samochód z listy porównania
+                    const index = compareList.indexOf(carId);
+                    if (index > -1) {
+                        compareList.splice(index, 1);
+                    }
+                }
+    
+                // Przekaż listę samochodów do porównania do URL
+                const compareUrl = new URL(window.location.protocol + "//" + window.location.host + "/compare/");
+                compareList.forEach(id => compareUrl.searchParams.append('compare', id));
+    
+                // Zaktualizuj przycisk porównania
+                const compareButton = document.getElementById('compare-button');
+                if (compareList.length >= 2) {
+                    compareButton.disabled = false;
+                    compareButton.href = compareUrl.href;
+                } else {
+                    compareButton.disabled = true;
+                    compareButton.href = '#';
+                }
+            });
+        });
+    });
+    </script>
+    
+    
 
 {% endblock %}

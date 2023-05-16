@@ -187,3 +187,27 @@ def add_transaction(request):
             submitted = True
 
     return render(request, 'add_transaction.html', {'form':form, 'submitted':submitted})
+
+@login_required
+def car_on_sale(request):
+    car_on_sale = CarOnSale.objects.all()
+
+    return render(request, 'car_on_sale.html',
+                  {'car_on_sale' : car_on_sale})
+
+@login_required
+def add_car_on_sale(request):
+    submitted = False
+    
+    if request.method == 'POST':
+        form = CarSaleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Samochód został dodany.')
+            return HttpResponseRedirect(reverse('admin_panel:cars-on-sale') + '?submitted=True')
+    else:
+        form = CarSaleForm
+        if "submitted" in request.GET:
+            submitted = True
+
+    return render(request, 'add_car_sale.html', {'form':form, 'submitted':submitted})

@@ -6,11 +6,15 @@ from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.utils import timezone
 
 
 def home(request):
     submitted = False
     opinion = client_opinion.objects.all()
+    caronsale = CarOnSale.objects.all()
+    car = Car.objects.all()
+    today = timezone.now().date()
 
     if request.method == 'POST':
         contact_form = ContactForm(request.POST)
@@ -23,13 +27,19 @@ def home(request):
             submitted = True
 
     return render(request, 'index.html',
-                  {'contact_form': contact_form, 'submitted': submitted, 'opinion': opinion})
+                  {'contact_form': contact_form, 'submitted': submitted, 'opinion': opinion, 'caronsale': caronsale, 'car': car, 'today': today})
+
+
 
 def FAQ(request):
     return render(request, 'FAQ.html', {})
 
 def index(request):
     submitted = False
+    opinion = client_opinion.objects.all()
+    caronsale = CarOnSale.objects.all()
+    car = Car.objects.all()
+    today = timezone.now().date()
 
     if request.method == 'POST':
         contact_form = ContactForm(request.POST)
@@ -42,7 +52,7 @@ def index(request):
             submitted = True
 
     return render(request, 'index.html',
-                  {'contact_form': contact_form, 'submitted': submitted})
+                  {'contact_form': contact_form, 'submitted': submitted, 'opinion': opinion, 'caronsale': caronsale, 'car': car, 'today': today})
 
 def car_list(request):
     car_list = Car.objects.all()
@@ -88,3 +98,8 @@ def add_opinion(request):
 
 def financing(request):
     return render(request, 'financing.html', {})
+
+def compare(request):
+    compare_list = request.GET.getlist('compare')
+    car_list = Car.objects.filter(id__in=compare_list)
+    return render(request, 'compare.html', {'car_list': car_list})

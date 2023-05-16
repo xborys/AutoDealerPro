@@ -141,3 +141,21 @@ class TransactionForm(ModelForm):
             'is_paid': forms.CheckboxInput(attrs={}),
         }
 
+class CarSaleForm(ModelForm):
+    class Meta:
+        model = CarOnSale
+        fields = ('car', 'new_price', 'start_date', 'end_date')
+
+        labels = {
+            'car': '',
+            'new_price': '',
+            'start_date': '',
+            'end_date': '',
+        }
+
+        widgets = {
+            'car': forms.Select(attrs={'class':'form-control'}),
+            'new_price': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Nowa cena'}),
+            'start_date': forms.DateInput(attrs={'class':'form-control', 'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'class':'form-control', 'type': 'date'}),
+        }
