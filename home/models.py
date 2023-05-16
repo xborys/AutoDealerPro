@@ -112,6 +112,16 @@ class Car(models.Model):
     def __str__(self):
         return str(self.make) + ' ' + self.model
     
+
+class CarOnSale(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    special_offer = models.BooleanField('Promocja', default=False)
+    new_price = models.IntegerField('Nowa cena (PLN)', blank=True, null=True)
+    start_date = models.DateField('Data rozpoczęcia', blank=True, null=True)
+    end_date = models.DateField('Data zakończenia', blank=True, null=True)
+    
+    def __str__(self):
+        return str(self.car)
     
 class Clients(models.Model):
     name = models.CharField('Imię i nazwisko / Nazwa firmy', max_length=50)
