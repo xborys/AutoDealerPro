@@ -12,4 +12,5 @@ urlpatterns = [
     path('car_list/car_details/<int:car_id>', views.car_details, name='car_details'),
     path('partner-list', views.partner_list, name='partner-list'),
     path('add-opinion', views.add_opinion, name='add-opinion'),
+    path('financing', views.financing, name='financing'),
 ]

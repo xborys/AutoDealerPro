@@ -97,7 +97,7 @@ class ClientOpinionForm(ModelForm):
             'client_mail' : '', 
             'client_score' : '', 
             'client_opinion' : '', 
-            'rodo' : '',
+            'rodo' : 'Zgoda RODO',
         }
 
         widgets = {
@@ -106,4 +106,30 @@ class ClientOpinionForm(ModelForm):
             'client_score': forms.Select(attrs={'class':'form-control', 'placeholder':'Ocena'}),
             'client_opinion': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Opinia'}),
             'rodo': forms.CheckboxInput(attrs={'class':'form-check-input', 'label':'Akceptuję warunki RODO'}),
+        }
+
+class CarFilterForm(forms.Form):
+    class Meta:
+        model = Car
+        fields = ('make', 'model', 'year', 'mileage', 'engine_capacity', 'engine_power', 'fuel_type', 'gear')
+
+        labels = {
+            'make': '',
+            'model': '',
+            'year': '',
+            'mileage': '',
+            'engine_capacity': '',
+            'engine_power': '',
+            'fuel_type': '',
+            'gear': '',
+        }
+
+        widgets = {
+            'make': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Marka'}),
+            'year': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Rok produkcji'}),
+            'mileage': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Przebieg'}),
+            'engine_capacity': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Pojemność silnika'}),
+            'engine_power': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Moc silnika'}),
+            'fuel_type': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Rodzaj paliwa'}),
+            'gear': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Skrzynia biegów'}),
         }

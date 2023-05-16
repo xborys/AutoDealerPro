@@ -2,61 +2,101 @@
 {% load static %}
 {% block content %}
 
-<section>
-<div class="container">
-<br/>
-    {% for car in car_list %}
-        {% if car.availability == True %}
-        <div class="col-md-4 col-sm-4">
-            <div class="courses-thumb courses-thumb-secondary">
-                <div class="courses-top">
-                    <div class="courses-image">
-                        {% if car.image %}
-                            <img src="{{car.image.url}}" class="img-responsive" alt="" style="max-width: 100%; object-fit: cover;">
-                        {% else %}
-                            <div class="no-image-icon">
-                                <i class="fa fa-car"></i>
+<section class="section-background">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-xs-12">
+                <div class="form-group">
+                    <select class="form-control" id="sort-select" onchange="location = this.value;">
+                        <option value="?">Domyślne sortowanie</option>
+                        <option value="?sort_by=make">Sortowanie wg: marki</option>
+                        <option value="?sort_by=model">Sortowanie wg: modelu</option>
+                        <option value="?sort_by=price">Sortowanie wg: ceny</option>
+                        <option value="?sort_by=year">Sortowanie wg: roku</option>
+                    </select>
+                </div>
+
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
+                            <h3 class="panel-title">
+                                <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                                    FILTRY
+                                </a>
+                            </h3>
+                        </div>
+                        <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                            <div class="panel-body px-3 mb-4">
+                                <form method="get">
+                                    <div class="form-group">
+                                        {{ filter.form.as_p }}
+                                    </div>                                    
+                                    <button type="submit" class="section-btn btn btn-primary btn-block">Search</button>
+                                </form>
                             </div>
-                        {% endif %}
-                        <div class="courses-date">
-                            <span title="Author"><i class="fa fa-dashboard"></i>
-                                {{car.mileage}} km
-                            </span>
-                            <span title="Author"><i class="fa fa-cube"></i>
-                                {{ car.engine_capacity }} cm<sup>3</sup>
-                            </span>
-                            <span title="Views"><i class="fa fa-cog"></i>
-                                {{ car.gear }}
-                            </span>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="courses-detail">
-                    <h3><a href="car-details.html">
-                        {{car.make}} {{car.model}}
-                    </a></h3>
+            <div class="col-lg-9 col-xs-12">
+                <div class="row">
+                    {% for car in car_list %}
+                        {% if car.availability == True %}
+                        <div class="col-lg-6 col-md-4 col-sm-6">
+                            <div class="courses-thumb courses-thumb-secondary">
+                                <div class="courses-top">
 
-                    <p class="lead"><strong>
-                        {{car.price}} PLN
-                    </strong></p>
-
-                    <p>
-                        {{car.engine_power}} KM&nbsp;&nbsp;/&nbsp;&nbsp;
-                        {{car.fuel_type}}&nbsp;&nbsp;/&nbsp;&nbsp;
-                        {{car.year}}
-                        
-                    </p>
-                </div>
-
-                <div class="courses-info">
-                    <a href="{% url 'home:car_details' car.id %}" class="section-btn btn btn-primary btn-block">Więcej informacji</a>
+                                    <div class="courses-image">
+                                        {% if car.image %}
+                                            <img src="{{car.image.url}}" class="img-responsive" alt="" style="max-width: 100%; object-fit: cover;">
+                                        {% else %}
+                                            <div class="no-image-icon">
+                                                <i class="fa fa-car"></i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="courses-date">
+                                        <span title="Przebieg"><i class="fa fa-dashboard"></i>
+                                            {{car.mileage}} km
+                                        </span>
+                                        <span title="Pojemność silnika"><i class="fa fa-cube"></i>
+                                            {{ car.engine_capacity }} cm<sup>3</sup>
+                                        </span>
+                                        <span title="Rodzaj skrzyni biegów"><i class="fa fa-cog"></i>
+                                            {{ car.gear }}
+                                        </span>
+                                    </div>            
+                                </div>
+                
+                                <div class="courses-detail">
+                                    <h3><a href="car-details.html">
+                                        {{car.make}} {{car.model}}
+                                    </a></h3>
+                
+                                    <p class="lead"><strong>
+                                        {{car.price}} PLN
+                                    </strong></p>
+                
+                                    <p>
+                                        {{car.engine_power}} KM&nbsp;&nbsp;/&nbsp;&nbsp;
+                                        {{car.fuel_type}}&nbsp;&nbsp;/&nbsp;&nbsp;
+                                        {{car.year}}
+                                        
+                                    </p>
+                                </div>
+                
+                                <div class="courses-info">
+                                    <a href="{% url 'home:car_details' car.id %}" class="section-btn btn btn-primary btn-block">Więcej informacji</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
-        </div>
-        {% endif %}
-    {% endfor %}
-</div>
+         </div>
+    </div>
 </section>
 
 <style>

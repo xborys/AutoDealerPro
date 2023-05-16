@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
+from .filters import CarFilter
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
@@ -45,8 +46,21 @@ def index(request):
 
 def car_list(request):
     car_list = Car.objects.all()
+
+    # Filtering
+    car_filter = CarFilter(request.GET, queryset=car_list)
+    car_list = car_filter.qs
+
+    # Sorting
+    sort_by = request.GET.get('sort_by')
+
+    if sort_by in ['make', 'model', 'price', 'year']:
+        car_list = car_list.order_by(sort_by)
+    
     return render(request, 'Car_List.html', 
-                  {'car_list': car_list})
+                  {'car_list': car_list, 'filter': car_filter})
+
+
 
 def car_details(request, car_id):
     car = Car.objects.get(pk=car_id)
@@ -71,3 +85,6 @@ def add_opinion(request):
 
     return render(request, 'add_opinion.html',
                   {'form': form, 'submitted': submitted})
+
+def financing(request):
+    return render(request, 'financing.html', {})

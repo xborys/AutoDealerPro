@@ -118,7 +118,7 @@ class CarForm(ModelForm):
             'vin': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Numer VIN', 'required': True}),
             'price': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Cena', 'required': True}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Opis', 'required': True}),
-            'availability': forms.CheckboxInput(attrs={'placeholder':'Dostępność', 'required': True}),
+            'availability': forms.CheckboxInput(attrs={'placeholder':'Dostępność'}),
             'image': forms.FileInput(attrs={'class':'form-control'}),
         }
 
