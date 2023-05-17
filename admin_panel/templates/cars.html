@@ -59,6 +59,9 @@
                                     {% else %}
                                         <i class="fas fa-times-circle text-danger"></i>
                                     {% endif %}
+                                    {% if car.reserved %}
+                                        <i class="text-danger">REZERWACJA</i>
+                                    {% endif %}
                                 </td>
                                 <td>{{ car.make }}</td>
                                 <td>{{ car.model}}</td>

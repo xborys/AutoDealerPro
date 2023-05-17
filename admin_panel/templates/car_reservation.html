@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %} AutoDealerPro: Rezerwacje {% endblock %}
+
+{% block title_v2 %}{% endblock %}
+
+{% block content %}
+    
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Lista zarezerwowanych samochodów
+            <a href="{% url 'admin_panel:add-car-reservation' %}" class="btn btn-primary btn-icon-split btn-sm float-right">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Dodaj rezerwacje</span>
+            </a>
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Klient</th>
+                        <th>Samochód</th>
+                        <th>Start rezerwacji</th>
+                        <th>Koniec rezerwacji</th>
+                        <th>Czy zapłacona</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for car in car_reservation %}
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                {{car.client}}
+                            </td>
+                            <td>
+                                {{car.car}}
+                            </td>
+                            <td>
+                                {{car.start_date}}
+                            </td>
+                            <td>
+                                {{car.end_date}}
+                            </td>
+                            <td>
+                                {% if car.is_paid %}
+                                    <span class="badge badge-success">Tak</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Nie</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="" class="btn btn-primary btn-icon-split btn-sm">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                </a>
+                                <a href="" class="btn btn-primary btn-icon-split btn-sm">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-edit"></i>
+                                    </span>
+                                </a>
+                                <a href="#" class="btn btn-danger btn-squere btn-sm" data-toggle="modal" data-target="#deleteModal{{ car.id }}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteModal{{ car.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ car.id }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel{{ car.id }}">Potwierdzenie usunięcia samochodu</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ELO
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                                        <a href="" class="btn btn-danger">Usuń</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

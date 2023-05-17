@@ -10,3 +10,14 @@ class Transaction(models.Model):
 
     def __str__ (self):
         return f"{self.client.name} | {self.car.make} {self.car.model}"
+    
+class CarReservation(models.Model):
+    client = models.ForeignKey(Clients, on_delete=models.CASCADE, related_name='reservations', db_index=True)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='reservations', db_index=True)
+    date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    is_paid = models.BooleanField(default=False)
+
+    def __str__ (self):
+        return f"{self.client.name} | {self.car.make} {self.car.model}"

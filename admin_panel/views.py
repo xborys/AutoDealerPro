@@ -8,6 +8,7 @@ from .forms import *
 from django.contrib import messages
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 @login_required
 def home(request):
@@ -18,6 +19,9 @@ def home(request):
 @login_required
 def cars(request):
     car_list = Car.objects.all()
+    current_time = timezone.now()
+    for car in car_list:
+        car.reserved = CarReservation.objects.filter(car=car, start_date__lte=current_time, end_date__gte=current_time).exists()
     return render(request, 'cars.html', 
                   {'car_list': car_list})
 
@@ -211,3 +215,31 @@ def add_car_on_sale(request):
             submitted = True
 
     return render(request, 'add_car_sale.html', {'form':form, 'submitted':submitted})
+
+@login_required
+def car_reservations(request):
+    car_reservation = CarReservation.objects.all()
+
+    return render(request, 'car_reservation.html',
+                  {'car_reservation' : car_reservation})
+
+@login_required
+def add_car_reservation(request):
+    submitted = False
+    form_car = CarReservationForm(request.POST or None)
+    form_client = ClientsForm(request.POST or None)
+
+    if request.method == 'POST':
+        if form_client.is_valid():
+            form_client.save()
+            messages.success(request, 'Klient został dodany.')
+            form_client = ClientsForm()  # Clear the form
+        if form_car.is_valid():
+            form_car.save()
+            messages.success(request, 'Rezerwacja została dodana.')
+            return HttpResponseRedirect(reverse('admin_panel:car-reservations') + '?submitted=True')
+        
+    if 'submitted' in request.GET:
+        submitted = True
+
+    return render(request, 'add_car_reservation.html', {'form_car':form_car, 'form_client':form_client, 'submitted':submitted})

@@ -159,3 +159,24 @@ class CarSaleForm(ModelForm):
             'start_date': forms.DateInput(attrs={'class':'form-control', 'type': 'date'}),
             'end_date': forms.DateInput(attrs={'class':'form-control', 'type': 'date'}),
         }
+
+class CarReservationForm(ModelForm):
+    class Meta:
+        model = CarReservation
+        fields = ('client', 'car', 'start_date', 'end_date', 'is_paid')
+
+        labels = {
+            'client': 'Wybierz klienta',
+            'car': 'Wybierz samochód',
+            'start_date': 'Data rozpoczęcia rezerwacji',
+            'end_date': 'Data końca rezewacji',
+            'is_paid': 'Czy rezerwacja jest opłacona?',
+        }
+
+        widgets = {
+            'client': forms.Select(attrs={'class':'form-control'}),
+            'car': forms.Select(attrs={'class':'form-control'}),
+            'start_date': forms.DateInput(attrs={'class':'form-control', 'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'class':'form-control', 'type': 'date'}),
+            'is_paid': forms.CheckboxInput(attrs={}),
+        }
