@@ -104,9 +104,9 @@
                               <div class="footer_menu">
                                    <h2>Szybkie linki</h2>
                                    <ul>
-                                        <li><a href="home">Strona główna</a></li>
-                                        <li><a href="car-list">Lista pojazdów</a></li>
-                                        <li><a href="financing">Finansowanie</a></li>
+                                        <li><a href="{% url 'home:home' %}">Strona główna</a></li>
+                                        <li><a href="{% url 'home:car-list' %}">Lista pojazdów</a></li>
+                                        <li><a href="{% url 'home:financing' %}">Finansowanie</a></li>
                                         <li><a href="#">###</a></li>
                                         <li><a href="{% url 'members:login-user' %}">Login</a></li>
                                    </ul>
