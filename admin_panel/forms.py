@@ -131,7 +131,7 @@ class TransactionForm(ModelForm):
             'client': '',
             'car': '',
             'price': '',
-            'is_paid': '',
+            'is_paid': 'Czy transakcja jest opłacona?',
         }
 
         widgets = {
@@ -180,3 +180,9 @@ class CarReservationForm(ModelForm):
             'end_date': forms.DateInput(attrs={'class':'form-control', 'type': 'date'}),
             'is_paid': forms.CheckboxInput(attrs={}),
         }
+
+MONTH_CHOICES = [(i, j) for i, j in enumerate(['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'], start=1)]
+
+class ReportForm(forms.Form):
+    month = forms.ChoiceField(choices=MONTH_CHOICES)
+    year = forms.IntegerField()

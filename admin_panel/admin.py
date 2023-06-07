@@ -3,3 +3,4 @@ from .models import *
 
 admin.site.register(Transaction)
 admin.site.register(CarReservation)
+admin.site.register(DEALER)

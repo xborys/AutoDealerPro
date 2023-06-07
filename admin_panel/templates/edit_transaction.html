@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block title_v2 %}{% endblock %}
+
+{% block content %}
+    
+<div class='container'>
+
+    <h1>Edytuj dane transakcji:</h1>
+        <form action="" method=POST>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <input type="submit" value="Akceptuj" class="btn btn-secondary">
+        </form> 
+        <br>
+</div>    
+    
+{% endblock %}

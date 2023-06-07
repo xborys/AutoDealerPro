@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib import messages
 
 
 def home(request):
@@ -87,7 +88,8 @@ def add_opinion(request):
         form = ClientOpinionForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('index') + '?submitted=True')
+            messages.success(request, 'Pojawiła się nowa opinia')
+            return HttpResponseRedirect(reverse('home:home') + '?submitted=True')
     else:
         form = ClientOpinionForm
         if "submitted" in request.GET:

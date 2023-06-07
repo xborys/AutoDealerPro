@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block title_v2 %} Raport sprzedaży {% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="POST" class="mb-4">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="id_month">Miesiąc</label>
+                        {{ form.month }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="id_year">Rok</label>
+                        {{ form.year }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Generuj Raport</button>
+            </form>
+            {% if no_sales %}
+                <div class="alert alert-warning" role="alert">
+                    Nie ma żadnych transakcji za wybrany miesiąc.
+                </div>
+            {% elif transactions %}
+                <h2>Raport za {{ form.month.value }}/{{ form.year.value }}</h2>
+                <h3>Ilość sprzedanych samochodów: {{ total_sales }}</h3>
+                <ul class="list-group">
+                    {% for transaction in transactions %}
+                        <li class="list-group-item">{{ transaction }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

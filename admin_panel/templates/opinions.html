@@ -22,6 +22,7 @@
                             <th>Imie, nazwisko</th>
                             <th>email</th>
                             <th>Ocena</th>
+                            <th>Treść opinii</th>
                             <th>Data</th>
                             <th></th>
                         </tr>
@@ -33,6 +34,7 @@
                             <td>{{ opinions.client_name }}</td>
                             <td>{{ opinions.client_mail }}</td>
                             <td>{{ opinions.client_score }}</td>
+                            <td>{{ opinions.client_opinion }}</td>
                             <td>{{ opinions.date|date:"d F Y, H:i" }}</td>
                             <td>
                                 <a href="#" class="btn btn-danger btn-squere btn-sm" data-toggle="modal" data-target="#deleteModal{{ opinions.id }}">

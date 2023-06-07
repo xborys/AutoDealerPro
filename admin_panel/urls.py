@@ -25,4 +25,10 @@ urlpatterns = [
     path('transaction/', views.transaction, name='transaction'),
     path('transaction/show-transaction/<int:transaction_id>/', views.show_transaction, name='show-transaction'),
     path('transaction/add-transaction/', views.add_transaction, name='add-transaction'),
+    path('transaction/edit-transaction/<int:transaction_id>/', views.edit_transaction, name='edit-transaction'),
+    path('transaction/del-transaction/<int:transaction_id>/', views.del_transaction, name='del-transaction'),
+    path('contract/<int:transaction_id>/', views.contract_view, name='contract'),
+    path('report_view/', views.report_view, name='report_view'),
+    path('sales_report/', views.sale_report_view, name='sales_report'),
+    path('contact/mark_as_answered/<int:contact_id>/', views.mark_as_answered, name='mark_as_answered'),
 ]

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section .title {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Umowa kupna-sprzedaży</h1>
+    </div>
+    <div class="section">
+        <p class="title">Sprzedawca:</p>
+        <p>Nazwa: {{ dealer.name }}</p>
+        <p>NIP: {{ dealer.nip }}</p>
+        <p>Adres: {{ dealer.address }}, {{ dealer.postal_code }} {{ dealer.city }}</p>
+        <p>Bank: {{ dealer.bank }}</p>
+        <p>Numer konta bankowego: {{ dealer.bank_account }}</p>
+    </div>
+    <div class="section">
+        <p class="title">Kupujący:</p>
+        <p>Nazwa: {{ client.name }}</p>
+        <p>PESEL: {{ client.pesel }}</p>
+        <p>NIP: {{ client.nip }}</p>
+        <p>Adres: {{ client.adress }}, {{ client.zip }} {{ client.city }}</p>
+        <p>Telefon: {{ client.phone }}</p>
+        <p>Email: {{ client.email }}</p>
+    </div>
+    <div class="section">
+        <p class="title">Samochód:</p>
+        <p>Marka: {{ car.make }}</p>
+        <p>Model: {{ car.model }}</p>
+        <p>VIN: {{ car.vin }}</p>
+        <p>Rok produkcji: {{ car.year }}</p>
+        <p>Przebieg: {{ car.mileage }}</p>
+        <p>Opis: {{ car.description }}</p>
+        <p>Pojemność silnika: {{ car.engine_capacity }}</p>
+        <p>Moc silnika: {{ car.engine_power }}</p>
+        <p>Rodzaj paliwa: {{ car.fuel_type }}</p>
+        <p>Skrzynia biegów: {{ car.gear }}</p>
+        <p>Typ: {{ car.type }}</p>
+        <p>Kolor: {{ car.color }}</p>
+        <p>Liczba miejsc: {{ car.seats }}</p>
+        <p>Liczba drzwi: {{ car.doors }}</p>
+        <p>Dostępność: {{ car.availability }}</p>
+        <p>Cena: {{ transaction.price }}</p>
+    </div>
+    <div class="section">
+        <p class="title">Szczegóły transakcji:</p>
+        <p>Data transakcji: {{ transaction.date }}</p>
+        <p>Czy opłacone: {{ transaction.is_paid }}</p>
+    </div>
+</body>
+</html>

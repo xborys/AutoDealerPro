@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Umowa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            margin: 0 auto;
+            width: 80%;
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Dodane */
+            margin-top: 50px;
+        }
+        .signature {
+            text-align: center;
+            flex: 1;
+        }
+        .left-signature {
+            text-align: left;
+            white-space: nowrap; /* Dodane */
+        }
+        .right-signature {
+            text-align: right;
+            white-space: nowrap; /* Dodane */
+        }
+        .signature strong {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .signature .dots {
+            margin-top: 20px;
+            display: inline-block;
+            width: 120px;
+            height: 1px;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1 class="title">UMOWA SPRZEDAŻY POJAZDU</h1>
+        <div class="section">
+            Zawarta w dniu: {{ transaction.date }} pomiędzy: <br><br>
+            <b>Sprzedającym:</b><br>
+            {{ transaction.dealer }} <br>
+            NIP: {{ transaction.dealer.nip }} <br>
+            Adres: {{ transaction.dealer.address }}, {{ transaction.dealer.postal_code }} {{ transaction.dealer.city }} <br>
+            a <br>
+            <b>Kupującym:</b><br>
+            Imię i nazwisko: {{ transaction.client.name }} <br>
+            PESEL: {{ transaction.client.pesel }} <br>
+            Adres: {{ transaction.client.adress }}, {{ transaction.client.zip }} {{ transaction.client.city }} <br>
+        </div>
+        <div class="section">
+            <h4 style="text-align: center">§1</h4>
+            Przedmiotem umowy jest sprzedaż pojazdu: <br>
+            Marka/model: {{ transaction.car.make }} / {{ transaction.car.model }} <br>
+            Nr nadwozia: {{ transaction.car.vin }} <br>
+            Przebieg: {{ transaction.car.mileage }} km
+        </div>
+        <div class="section">
+            <h4 style="text-align: center">§2</h4>
+            Sprzedający oświadcza, że pojazd będący przedmiotem umowy stanowi jego wyłączną własność, jest wolny od 
+            wad prawnych oraz praw osób trzecich, że nie toczy się żadne postępowanie, którego przedmiotem jest ten pojazd, 
+            że nie stanowi on również przedmiotu zabezpieczenia.
+        </div>
+        <div class="section">
+            <h4 style="text-align: center">§3</h4>
+            Sprzedający oświadcza, że zobowiązuje się do sprzedania Kupującemu opisanego wyżej pojazdu za kwotę 
+            {{ transaction.price }} zł w terminie do 7 dni od podpisania tej umowy, a Kupujący oświadcza, że zobowiązuje się 
+            do kupienia pojazdu w ustalonym terminie i za ustaloną kwotę.
+        </div>
+        <div class="signatures">
+            <div class="signature left-signature">
+                <strong>Podpis sprzedającego:</strong>
+                <div class="dots"></div>
+            </div>
+            <div class="signature right-signature">
+                <strong>Podpis kupującego:</strong>
+                <div class="dots"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

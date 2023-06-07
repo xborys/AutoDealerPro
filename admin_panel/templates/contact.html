@@ -35,36 +35,30 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th></th>
+                            
                             <th>Imie, nazwisko</th>
                             <th>email</th>
+                            <th>Tresc</th>
+                            <th>Czy odpowiedziano</th>
                             <th></th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th></th>
-                            <th>Imie, nazwisko</th>
-                            <th>email</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         {% for contact in contact %}
-                            <tr>
-                                <td>
-                                {% if 'Nie' in contact.answer.yes_no %}
-                                    OLD
-                                {% else %}
-                                    NEW
-                                {% endif %}
-                                </td>     
+                            <tr>     
                                 <td>{{ contact.name }}</td>
                                 <td>{{ contact.email }}</td>
+                                <td>{{ contact.message }}</td>
                                 <td>
-                                    <a href='#' class="button"><i class="fa fa-user"></i></a>
-                                    <a href='#' class="button"><i class="fa fa-edit"></i></a>
-                                    <a href='#' class="button" onclick="return confirmDelete();"><i class="fa fa-trash"></i></a>
+                                    {% if 'Nie' in contact.answer.yes_no %}
+                                        NIE
+                                    {% else %}
+                                        TAK
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="mailto:'{{ contact.email }}'" class="button"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                                    <a href="{% url 'admin_panel:mark_as_answered' contact.id %}" class="button"><i class="fa fa-check"></i></a>
                                 </td>
                             </tr>
                         {% endfor %}

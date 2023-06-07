@@ -26,6 +26,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
+
             <h6 class="m-0 font-weight-bold text-primary">
                 Lista klientów
                 <a href="{% url 'admin_panel:add-client' %}" class="btn btn-primary btn-icon-split btn-sm float-right">
@@ -34,7 +35,24 @@
                     </span>
                     <span class="text">Dodaj klienta</span>
                 </a>
+                <button id="filter-toggle" class="btn btn-primary btn-icon-split btn-sm float-right mr-2">
+                    <span class="text">FILTRY</span>
+                </button>
+                
             </h6>
+            <div id="filter-form" style="display: none;">
+                <form method="GET">
+                    <input type="text" name="name" placeholder="Imię i nazwisko / Nazwa firmy" value="{{ request.GET.name }}">
+                    <input type="text" name="pesel" placeholder="PESEL" value="{{ request.GET.pesel }}">
+                    <input type="text" name="nip" placeholder="NIP" value="{{ request.GET.nip }}">
+                    <input type="text" name="adress" placeholder="Adres" value="{{ request.GET.adress }}">
+                    <input type="text" name="city" placeholder="Miasto" value="{{ request.GET.city }}">
+                    <input type="text" name="zip" placeholder="Kod pocztowy" value="{{ request.GET.zip }}">
+                    <input type="text" name="phone" placeholder="Telefon" value="{{ request.GET.phone }}">
+                    <input type="text" name="email" placeholder="E-mail" value="{{ request.GET.email }}">
+                    <button type="submit" class="btn btn-primary">Filtruj</button>
+                </form>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -128,4 +146,15 @@
         </div>
     </div>
     
+    <script>
+        document.getElementById('filter-toggle').addEventListener('click', function() {
+            var form = document.getElementById('filter-form');
+            if(form.style.display === 'none') {
+                form.style.display = 'block';
+            } else {
+                form.style.display = 'none';
+            }
+        });
+    </script>
+
 {% endblock %}

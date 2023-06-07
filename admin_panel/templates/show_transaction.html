@@ -91,5 +91,19 @@
         </div>
     </div>
 </div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold text-primary">
+            Generuj umowę:
+        </h4>
+    </div>
+    <div class="card-body">
+        <form method="post" action="{% url 'admin_panel:contract' transaction.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Generuj PDF</button>
+        </form>
+    </div>
+</div>
     
 {% endblock %}
