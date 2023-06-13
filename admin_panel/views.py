@@ -268,6 +268,12 @@ def car_on_sale(request):
                   {'car_on_sale' : car_on_sale})
 
 @login_required
+def del_car_on_sale(request, car_id):
+    car_on_sale = get_object_or_404(CarOnSale, id=car_id)
+    car_on_sale.delete()
+    return redirect('admin_panel:cars-on-sale')
+
+@login_required
 def add_car_on_sale(request):
     submitted = False
     

@@ -22,7 +22,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>ID</th>
                         <th>Samochód</th>
                         <th>Cena w promocji</th>
                         <th>Start promocji</th>
@@ -33,13 +33,7 @@
                 <tbody>
                     {% for car in car_on_sale %}
                         <tr>
-                            <td>
-                                {% if car.special_offer %}
-                                    <i class="fas fa-star"></i>
-                                {% else %}
-                                    <i class="fas fa-star-half-alt"></i>
-                                {% endif %}
-                            </td>
+                            <td>{{car.car.id}}</td>
                             <td>
                                 {{car.car}}
                             </td>
@@ -80,11 +74,11 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        ELO
+                                        Czy na pewno chcesz usunąć promocje na samochód {{ car.car }}? 
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-                                        <a href="" class="btn btn-danger">Usuń</a>
+                                        <a href="{% url 'admin_panel:del-car-on-sale' car_id=car.id %}" class="btn btn-danger">Usuń</a>
                                     </div>
                                 </div>
                             </div>
